@@ -52,6 +52,8 @@
 .new-project button{
     background-color: #ff7133;
     margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
     width: auto;
     border: none;
     padding:30px;
