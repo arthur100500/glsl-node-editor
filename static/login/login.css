@@ -1,0 +1,12 @@
+.signin-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+form{
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 40px;
+    margin: 40px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.35);
+}

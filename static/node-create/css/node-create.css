@@ -1,0 +1,52 @@
+.main-editor {
+    width: 929px;
+    height: 100%;
+    position: relative;
+    top: 40px;
+}
+
+.node-creator-g {
+    display: flex;
+    height: calc(100vh - 70px);
+}
+
+#editor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 1px 0 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.editor-c {
+    width: 100px;
+    height: 100px;
+}
+
+@media screen and (max-width: 700px) {
+    .main-editor {
+        width: 100vw;
+        height: 70vh;
+    }
+}
+
+#node-preview{
+    position: relative;
+    top: 40px;
+    width: 100%;
+}
+
+.node-holder{
+  position: absolute;
+  left: 50%;
+  top: 33%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+    width: 200px;
+}
+
+.content-grid{
+    display: grid;
+    grid-template-columns: 929px 1fr;
+}
