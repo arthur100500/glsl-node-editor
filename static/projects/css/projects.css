@@ -11,12 +11,12 @@
     border: 1px solid #e0e0e0;
     background-color: #fefefe;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-    transition: background-color ease-in-out 200ms;
+    transition: background-color ease-in-out 60ms;
 }
 
 .project:hover {
     background-color: #f6f6f6;
-    transition: background-color ease-in-out 200ms;
+    transition: background-color ease-in-out 60ms;
 }
 
 .project-data {
@@ -49,6 +49,7 @@
 .new-project {
     text-align: center;
 }
+
 .new-project button{
     background-color: #ff7133;
     margin: auto;
@@ -60,4 +61,11 @@
     border-radius: 10px;
     color: #ffffff;
     font-size: 150%;
+    transition: transform ease-in-out 200ms,background-color ease-in-out 200ms;
+}
+
+.new-project button:hover{
+    background-color: #e76329;
+    transform: scale(1.02);
+    transition: transform ease-in-out 200ms,background-color ease-in-out 200ms;
 }
