@@ -10,13 +10,13 @@
     border-radius: 10px;
     border: 1px solid #e0e0e0;
     background-color: #fefefe;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    transition: transform ease-in-out 200ms;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    transition: background-color ease-in-out 200ms;
 }
 
 .project:hover {
-    transform: scale(1.05);
-    transition: transform ease-in-out 200ms;
+    background-color: #f6f6f6;
+    transition: background-color ease-in-out 200ms;
 }
 
 .project-data {

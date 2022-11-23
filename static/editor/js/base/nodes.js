@@ -99,7 +99,7 @@ class Node {
 		let nodeRemoveBtn = document.createElement("span");
 		nodeRemoveBtn.className = "close";
 		nodeRemoveBtn.innerHTML = "&times;";
-		nodeRemoveBtn.style = "position: absolute; top: -12px; right: -5px; width: 30px;";
+		nodeRemoveBtn.style = "position: absolute; top: -7px; right: -5px; width: 30px;";
 		nodeRemoveBtn.node = this;
 		nodeRemoveBtn.onmousedown = function(){this.node.destroy();};
 		this.dragableHeader.appendChild(nodeRemoveBtn);
