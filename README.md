@@ -7,7 +7,7 @@
 Creates shaders using nodes
 
 ### How to create a new shader?
-- Register an account, clicking on the button "Sign in"<br />
+- Register an account, clicking on the button `Sign in`<br />
 - Click on Projects button, click  `+ Create new project`<br />
 - You can change a name and description of your project just with clicking and editing its data<br />
 
@@ -30,7 +30,7 @@ Creates shaders using nodes
 Creates nodes using GLSL code
 
 ### How to create a new node?
-- Register an account, clicking on the button "Sign in"<br />
+- Register an account, clicking on the button `Sign in`<br />
 - Click on Nodes button, click  `+ Create new node`<br />
 
 ### How to edit nodes name?
