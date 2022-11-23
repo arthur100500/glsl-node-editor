@@ -3,3 +3,6 @@ forms/__pycache__/login_form.cpython-310.pyc
 forms/__pycache__/register_form.cpython-310.pyc
 .idea/
 __pycache__
+static/project_imgs/
+db/users.sqlite
+db/users.sqlite

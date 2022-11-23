@@ -137,6 +137,7 @@ compileButton.onmousedown = function () {
     fragShader = code;
     draw(glCanvas);
 }
+
 saveShButton.onmousedown = function () {
     code = assamble();
     download("shader.glsl", code);
@@ -237,3 +238,4 @@ function loadFromJson(json) {
 // load current project
 let m = document.querySelector("#json-code");
 loadFromJson(m.dataset.jsonCode)
+compileButton.onmousedown()
