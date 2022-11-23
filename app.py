@@ -55,7 +55,7 @@ def get_code(node_id):
     return node.json_code
 
 
-@app.route('/add_node/<node_id>')
+@app.route('/add_node/<node_id>', methods=['POST'])
 @login_required
 def add_node(node_id):
     session = db_session.create_session()
@@ -64,8 +64,25 @@ def add_node(node_id):
         return "no node with id"
 
     cu = session.query(User).filter(User.id == current_user.id).first()
-    used_nodes_set = set(cu.used_nodes.split())
+    used_nodes_set = set(str(cu.used_nodes).split())
     used_nodes_set.add(node_id)
+    cu.used_nodes = " ".join(list(used_nodes_set))
+    session.add(cu)
+    session.commit()
+    return "success"
+
+
+@app.route('/rem_node/<node_id>', methods=['POST'])
+@login_required
+def rem_node(node_id):
+    session = db_session.create_session()
+    node = session.query(Node).filter(Node.id == int(node_id)).first()
+    if not node:
+        return "no node with id"
+
+    cu = session.query(User).filter(User.id == current_user.id).first()
+    used_nodes_set = set(str(cu.used_nodes).split())
+    used_nodes_set.remove(node_id)
     cu.used_nodes = " ".join(list(used_nodes_set))
     session.add(cu)
     session.commit()
@@ -142,7 +159,7 @@ def editor_page(proj_id):
     used_nodes_codes = []
     if current_user.is_authenticated:
         cu = session.query(User).filter(User.id == current_user.id).first()
-        used_nodes_ids = cu.used_nodes.split()
+        used_nodes_ids = str(cu.used_nodes).split()
         for node_id in used_nodes_ids:
             used_nodes_codes.append(session.query(Node).filter(Node.id == node_id).first().json_code)
 
