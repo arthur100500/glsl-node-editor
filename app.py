@@ -1,8 +1,11 @@
+import base64
+
 from flask import Flask, render_template, redirect, request
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 from forms.login_form import LoginForm
 from forms.register_form import RegisterForm
+from PIL import Image
 
 from db import db_session
 from db.models.user_model import UserModel as User
@@ -19,6 +22,27 @@ db_session.global_init("db/users.sqlite")
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+
+@app.route('/set_img/<proj_id>', methods=['POST'])
+def set_img(proj_id):
+    session = db_session.create_session()
+    project = session.query(Project).filter(Project.id == int(proj_id)).first()
+    if not project:
+        return "no project with id"
+
+    if project.user_id != current_user.id:
+        return "success"
+
+    with open(f"static/project_imgs/{proj_id}.png", "wb") as fh:
+        bts = request.form['img'].split(',')[1].encode("utf8")
+        fh.write(base64.decodebytes(bts))
+
+    project.img_src = f"{proj_id}.png"
+    session.add(project)
+    session.commit()
+
+    return "success"
 
 
 @app.route('/get_code/<node_id>')

@@ -141,6 +141,7 @@ saveShButton.onmousedown = function () {
     code = assamble();
     download("shader.glsl", code);
 }
+
 savePrButton.onmousedown = function () {
     let code = "";
     for (let i = 0; i < allNodes.length; i++)
@@ -166,6 +167,21 @@ savePrButton.onmousedown = function () {
             console.log(error);
         }
     });
+
+    $.ajax({
+        type: 'POST',
+        dataType: 'data',
+        url: '/set_img/' + pid,
+        data: {img: glCanvas.toDataURL()},
+        success: function (response) {
+            if (!(response === "success")) {
+                console.log(response);
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 }
 
 function loadFromJson(json) {
@@ -177,7 +193,7 @@ function loadFromJson(json) {
     }
 
     allNodes = [];
-    projectObject = JSON.parse(json);
+    let projectObject = JSON.parse(json);
     // Nodes from Object
     for (let i = 0; i < projectObject.length; i++) {
         let parsed = new Node();

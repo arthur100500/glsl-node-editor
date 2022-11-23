@@ -67,7 +67,7 @@ function createProgram(gl) {
 }
 
 function draw(glCanvas) {
-    const gl = glCanvas.getContext("webgl") || glCanvas.getContext("experimental-webgl");
+    const gl = glCanvas.getContext("webgl", {preserveDrawingBuffer: true});
     if (!gl)
         alert("Your browser does not support WebGL");
 
@@ -172,4 +172,5 @@ function draw(glCanvas) {
     updateAndRedraw();
 }
 
+glCanvas.setAttribute('crossOrigin','anonymous');
 draw(glCanvas);

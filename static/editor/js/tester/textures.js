@@ -37,9 +37,9 @@ function loadTexture(gl, url) {
   return texture;
 }
 
-const gl = glCanvas.getContext("webgl") || glCanvas.getContext("experimental-webgl");
+const gl = glCanvas.getContext("webgl", {preserveDrawingBuffer: true}) || glCanvas.getContext("experimental-webgl", {preserveDrawingBuffer: true});
     if (!gl)
-        alert("Your brouser does not support WebGL");
+        alert("Your browser does not support WebGL");
 
 gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 
