@@ -111,16 +111,16 @@ def new_project():
 
 
 @app.route('/project/<proj_id>')
-@login_required
 def editor_page(proj_id):
     session = db_session.create_session()
     project = session.query(Project).filter(Project.id == proj_id).first()
     author = session.query(User).filter(User.id == project.user_id).first()
-    cu = session.query(User).filter(User.id == current_user.id).first()
-    used_nodes_ids = cu.used_nodes.split()
     used_nodes_codes = []
-    for node_id in used_nodes_ids:
-        used_nodes_codes.append(session.query(Node).filter(Node.id == node_id).first().json_code)
+    if current_user.is_authenticated:
+        cu = session.query(User).filter(User.id == current_user.id).first()
+        used_nodes_ids = cu.used_nodes.split()
+        for node_id in used_nodes_ids:
+            used_nodes_codes.append(session.query(Node).filter(Node.id == node_id).first().json_code)
 
     return render_template("editor.html", project=project, author=author, used_nodes=used_nodes_codes)
 
@@ -134,7 +134,6 @@ def projects_page():
 
 
 @app.route('/node/<node_id>')
-@login_required
 def node_editor_page(node_id):
     session = db_session.create_session()
     node = session.query(Node).filter(Node.id == node_id).first()
@@ -151,7 +150,9 @@ def nodes_page():
 
 @app.route('/explore')
 def explore_page():
-    return render_template("base.html")
+    session = db_session.create_session()
+    projects = session.query(Project)
+    return render_template("explore.html", projects=projects)
 
 
 @app.route('/')
