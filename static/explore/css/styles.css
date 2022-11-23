@@ -1,6 +1,6 @@
-.explore{
+.explore {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .project {
@@ -19,13 +19,31 @@
 
 .pr-img {
     aspect-ratio: 16/9;
-    width:100%;
+    width: 100%;
     border-radius: 10px 10px 0 0;
     border-bottom: 1px solid #e0e0e0;
 }
 
-.project-data{;
+.project-data {;
     font-size: 130%;
     color: #ff7133;
-    margin:10px;
+    margin: 10px;
 }
+
+.main-content {
+    width: 1000px;
+    margin: auto;
+}
+
+@media screen and (max-width: 1000px) {
+    .main-content {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .explore {
+        grid-template-columns: 1fr;
+    }
+}
+

@@ -179,6 +179,13 @@ def explore_page():
     return render_template("explore.html", projects=projects)
 
 
+@app.route('/explore/nodes')
+def explore_page_nodes():
+    session = db_session.create_session()
+    nodes = session.query(Node)
+    return render_template("explore_nodes.html", nodes=nodes)
+
+
 @app.route('/')
 def index():
     return explore_page()
