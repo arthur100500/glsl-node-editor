@@ -1,4 +1,4 @@
-loadPrButton.type = 'file';
+/*loadPrButton.type = 'file';
 
 loadPrButton.onchange = e => { 
    var file = e.target.files[0]; 
@@ -12,3 +12,4 @@ loadPrButton.onchange = e => {
 	loadFromJson(reader.result);
    };
 }
+*/

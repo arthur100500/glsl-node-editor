@@ -9,7 +9,7 @@ const pageLayoutDiv = document.querySelector("#page-layout");
 const compileButton = document.querySelector("#compile-button");
 const saveShButton = document.querySelector("#save-as-shader-button");
 const savePrButton = document.querySelector("#save-as-project-button");
-const loadPrButton = document.querySelector("#load-project-button");
+const sortPrButton = document.querySelector("#sort-button");
 
 const prName = document.querySelector(".pr-name")
 const prDesc = document.querySelector(".pr-desc")

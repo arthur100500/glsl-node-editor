@@ -80,13 +80,17 @@ class Node {
 			this.height = 20 + (this.inputs.length + this.parameters.length) * 30;
 	}
 
+	updateContStyle(){
+		this.nodeContainer.style = "position:absolute; left:" + this.positionX + "px; top:" + this.positionY + "px; height:" + this.height + "px;";
+	}
+
 	draw(target) {
 		this.recountGraphicParams();
 		
 		// Container
 		this.nodeContainer.className = "node-container";
 		this.nodeContainer.id = "node" + this.id;
-		this.nodeContainer.style = "position:absolute; left:" + this.positionX + "px; top:" + this.positionY + "px; height:" + this.height + "px;";
+		this.updateContStyle()
 		this.nodeContainer.innerHTML = this.bg.getHtml();
 
 		// Header
