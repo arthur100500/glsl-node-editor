@@ -51,3 +51,44 @@ vec4 your_function(){
     return vec4(colorBase, transparency);
 }
 ```
+
+## Built-in nodes
+### Inputs:
+- texCoord, texCoordX and texCoordY - position of pixel on screen from (0, 0) to (1, 1)
+- time - float time in secods, 1s = 1.0
+- mousePos - position of mouse cursor on screen, from (0, 0) to (1, 1)
+
+### Outputs:
+- outputColor - vec4, color of pixel, from (0, 0, 0, 0) to (1, 1, 1, 1), in RGBA format
+
+### Math:
+- sin - sin(value)
+- pow - value to the power of power
+- rand - random number for each position on screen
+- noise - perlin noise
+- avg - avarage between 4 floats
+- multiplyff - float * float
+- multiplyfv2 float * vec2
+- multiplyfv4 float * vec4
+- plus - float + float
+- plusv2 - vec2 + vec2
+- plusv4 - vec4 + vec4
+- minus - float - float
+
+### Conversions:
+- vec2x - the first component of vec2
+- vec2y - the second component of vec2
+- vec4r - the first component of vec2, red channel of a color
+- vec4g - the second component of vec2, green channel of a color
+- vec4b - the third component of vec2, blue channel of a color
+- vec4a - the fourth component of vec2, alpha channel of a color
+- fromFloatV2 - vec2 from 2 floats, (x, y)
+- fromFloatV4 - vec4 from 4 floats, (r, g, b, a)
+
+### Constants:
+- int - integer constant
+- float - float constant
+- vec2 - vec2 constant for position
+- vec4 - vec4 constant for color
+
+###
