@@ -91,4 +91,12 @@ vec4 your_function(){
 - vec2 - vec2 constant for position
 - vec4 - vec4 constant for color
 
-###
+### Logic:
+- multiplex - chooses between two floats, if the bool is true picks first, else second
+- isBigger - a > b 
+
+### Textures:
+- textureN - gets a color from a texture with the position given
+
+### Custom:
+Nodes you added
