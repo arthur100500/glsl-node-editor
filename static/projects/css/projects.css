@@ -1,78 +1,77 @@
 .main-content {
-    width: 1000px;
-    margin: auto;
+  width: 1000px;
+  margin: auto;
 }
 
 @media screen and (max-width: 1000px) {
-    .main-content {
-        width: 100%;
-    }
+  .main-content {
+    width: 100%;
+  }
 }
 
-
 .project {
-    margin: 10px;
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    border-radius: 10px;
-    border: 1px solid #e0e0e0;
-    background-color: #fefefe;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-    transition: background-color ease-in-out 60ms;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  background-color: #fefefe;
+  box-shadow: 0 0 20px rgb(0 0 0 / 5%);
+  transition: background-color ease-in-out 60ms;
 }
 
 .project:hover {
-    background-color: #f6f6f6;
-    transition: background-color ease-in-out 60ms;
+  background-color: #f6f6f6;
+  transition: background-color ease-in-out 60ms;
 }
 
 .project-data {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    display: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  display: inherit;
 }
 
 .project-name {
-    font-size: 300%;
-    color: #ff7133;
-    margin: 10px;
+  font-size: 300%;
+  color: #ff7133;
+  margin: 10px;
 }
 
 .project-description {
-    font-size: 150%;
-    color: #333333;
-    margin: 10px;
+  font-size: 150%;
+  color: #333;
+  margin: 10px;
 }
 
 .project-image {
-    width: 250px;
+  width: 250px;
 }
 
 .pr-img {
-    width: 250px;
-    border-radius: 10px 0 0 10px;
-    border-right: 1px solid #e0e0e0;
+  width: 250px;
+  border-radius: 10px 0 0 10px;
+  border-right: 1px solid #e0e0e0;
 }
 
 .new-project {
-    text-align: center;
+  text-align: center;
 }
 
 .new-project button {
-    background-color: #ff7133;
-    margin: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: auto;
-    border: none;
-    padding: 30px;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 150%;
-    transition: transform ease-in-out 200ms, background-color ease-in-out 200ms;
+  background-color: #ff7133;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: auto;
+  border: none;
+  padding: 30px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 150%;
+  transition: transform ease-in-out 200ms, background-color ease-in-out 200ms;
 }
 
 .new-project button:hover {
-    background-color: #e76329;
-    transform: scale(1.02);
-    transition: transform ease-in-out 200ms, background-color ease-in-out 200ms;
+  background-color: #e76329;
+  transform: scale(1.02);
+  transition: transform ease-in-out 200ms, background-color ease-in-out 200ms;
 }

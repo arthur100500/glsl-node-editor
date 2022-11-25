@@ -6,3 +6,5 @@ __pycache__
 static/project_imgs/
 db/users.sqlite
 db/users.sqlite
+node_modules/*
+node_modules

@@ -1,49 +1,48 @@
 .explore {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .project {
-    margin: 10px;
-    border-radius: 10px;
-    border: 1px solid #e0e0e0;
-    background-color: #fefefe;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-    transition: background-color ease-in-out 60ms;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  background-color: #fefefe;
+  box-shadow: 0 0 20px rgb(0 0 0 / 5%);
+  transition: background-color ease-in-out 60ms;
 }
 
 .project:hover {
-    background-color: #f6f6f6;
-    transition: background-color ease-in-out 60ms;
+  background-color: #f6f6f6;
+  transition: background-color ease-in-out 60ms;
 }
 
 .pr-img {
-    aspect-ratio: 16/9;
-    width: 100%;
-    border-radius: 10px 10px 0 0;
-    border-bottom: 1px solid #e0e0e0;
+  aspect-ratio: 16/9;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-.project-data {;
-    font-size: 130%;
-    color: #ff7133;
-    margin: 10px;
+.project-data {
+  font-size: 130%;
+  color: #ff7133;
+  margin: 10px;
 }
 
 .main-content {
-    width: 1000px;
-    margin: auto;
+  width: 1000px;
+  margin: auto;
 }
 
 @media screen and (max-width: 1000px) {
-    .main-content {
-        width: 100%;
-    }
+  .main-content {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 700px) {
-    .explore {
-        grid-template-columns: 1fr;
-    }
+  .explore {
+    grid-template-columns: 1fr;
+  }
 }
-
