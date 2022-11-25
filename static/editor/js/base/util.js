@@ -1,42 +1,41 @@
-const glCanvas = document.querySelector("#gl-canvas");
-const mainEditorDiv = document.querySelector("#main-editor");
-const contextMenu = document.querySelector("#context-menu");
-const contextMenuNodes = document.querySelector("#node-list-div");
+const glCanvas = document.querySelector('#gl-canvas');
+const mainEditorDiv = document.querySelector('#main-editor');
+const contextMenu = document.querySelector('#context-menu');
+const contextMenuNodes = document.querySelector('#node-list-div');
 
-const openCloseTriangle = document.querySelector("#oc-triangle");
-const pageLayoutDiv = document.querySelector("#page-layout");
+const openCloseTriangle = document.querySelector('#oc-triangle');
+const pageLayoutDiv = document.querySelector('#page-layout');
 
-const compileButton = document.querySelector("#compile-button");
-const saveShButton = document.querySelector("#save-as-shader-button");
-const savePrButton = document.querySelector("#save-as-project-button");
-const sortPrButton = document.querySelector("#sort-button");
+const compileButton = document.querySelector('#compile-button');
+const saveShButton = document.querySelector('#save-as-shader-button');
+const savePrButton = document.querySelector('#save-as-project-button');
+const sortPrButton = document.querySelector('#sort-button');
 
-const prName = document.querySelector(".pr-name")
-const prDesc = document.querySelector(".pr-desc")
+const prName = document.querySelector('.pr-name');
+const prDesc = document.querySelector('.pr-desc');
 
-const nodeEditorDiv = document.querySelector("#node-editor");
+const nodeEditorDiv = document.querySelector('#node-editor');
 
-const usedNodesMetas = document.querySelectorAll(".used-nodes");
+const usedNodesMetas = document.querySelectorAll('.used-nodes');
 
-var mouseX = 0;
-var mouseY = 0;
+const mouseX = 0;
+const mouseY = 0;
 
-var somethingIsBeingDragged = false;
-var somethingIsBeingConnected = false;
+const somethingIsBeingDragged = false;
+const somethingIsBeingConnected = false;
 
-var getScrollLeft = function(){return (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;}
-var getScrollTop = function(){return (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;}
+const getScrollLeft = function () { return (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft; };
+const getScrollTop = function () { return (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop; };
 
-var getMatrix = function(){
-  let matrixDevided = mainEditorDiv.style.transform.replace("matrix(", "").replace(")", "").split(", ");
-  for(let i = 0; i < matrixDevided.length; i++)
-    matrixDevided[i] = Number(matrixDevided[i]);
+const getMatrix = function () {
+  const matrixDevided = mainEditorDiv.style.transform.replace('matrix(', '').replace(')', '').split(', ');
+  for (let i = 0; i < matrixDevided.length; i++) { matrixDevided[i] = Number(matrixDevided[i]); }
   return matrixDevided;
-}
+};
 
 function download(filename, text) {
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  const element = document.createElement('a');
+  element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(text)}`);
   element.setAttribute('download', filename);
 
   element.style.display = 'none';
