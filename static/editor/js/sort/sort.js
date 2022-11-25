@@ -1,4 +1,4 @@
-let moved = []
+let moved = [];
 
 function getChildrenHeightSum(node) {
     let accum = 0;
@@ -17,7 +17,6 @@ function setPosition(st, node, level) {
     node.positionX = -300 * level;
     node.positionY = st;
     node.updateContStyle();
-    console.log(getChildrenHeightSum(node));
     return getChildrenHeightSum(node);
 }
 
