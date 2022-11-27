@@ -1,60 +1,62 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Query the element
-  const resizer = document.getElementById('dragger');
-  const leftSide = resizer.previousElementSibling;
-  const rightSide = resizer.nextElementSibling;
 
-  // The current position of mouse
-  let x = 0;
-  let y = 0;
-  let leftWidth = 0;
+            document.addEventListener('DOMContentLoaded', function () {
+                // Query the element
+                const resizer = document.getElementById('dragger');
+                const leftSide = resizer.previousElementSibling;
+                const rightSide = resizer.nextElementSibling;
 
-  // Handle the mousedown event
-  // that's triggered when user drags the resizer
-  const mouseDownHandler = function (e) {
-    // Get the current mouse position
-    x = e.clientX;
-    y = e.clientY;
-    leftWidth = leftSide.getBoundingClientRect().width;
+                // The current position of mouse
+                let x = 0;
+                let y = 0;
+                let leftWidth = 0;
 
-    // Attach the listeners to `document`
-    document.addEventListener('mousemove', mouseMoveHandler);
-    document.addEventListener('mouseup', mouseUpHandler);
-  };
+                // Handle the mousedown event
+                // that's triggered when user drags the resizer
+                const mouseDownHandler = function (e) {
+                    // Get the current mouse position
+                    x = e.clientX;
+                    y = e.clientY;
+                    leftWidth = leftSide.getBoundingClientRect().width;
 
-  const mouseMoveHandler = function (e) {
-    // How far the mouse has been moved
-    const dx = e.clientX - x;
-    const dy = e.clientY - y;
+                    // Attach the listeners to `document`
+                    document.addEventListener('mousemove', mouseMoveHandler);
+                    document.addEventListener('mouseup', mouseUpHandler);
+                };
 
-    const newLeftWidth = ((leftWidth + dx) * 100) / resizer.parentNode.getBoundingClientRect().width;
-    leftSide.style.width = `${newLeftWidth}%`;
+                const mouseMoveHandler = function (e) {
+                    // How far the mouse has been moved
+                    const dx = e.clientX - x;
+                    const dy = e.clientY - y;
 
-    resizer.style.cursor = 'col-resize';
-    document.body.style.cursor = 'col-resize';
+                    const newLeftWidth = ((leftWidth + dx) * 100) / resizer.parentNode.getBoundingClientRect().width;
+                    leftSide.style.width = `${newLeftWidth}%`;
 
-    leftSide.style.userSelect = 'none';
-    leftSide.style.pointerEvents = 'none';
+                    resizer.style.cursor = 'col-resize';
+                    document.body.style.cursor = 'col-resize';
 
-    rightSide.style.userSelect = 'none';
-    rightSide.style.pointerEvents = 'none';
-  };
+                    leftSide.style.userSelect = 'none';
+                    leftSide.style.pointerEvents = 'none';
 
-  const mouseUpHandler = function () {
-    resizer.style.removeProperty('cursor');
-    document.body.style.removeProperty('cursor');
+                    rightSide.style.userSelect = 'none';
+                    rightSide.style.pointerEvents = 'none';
+                };
 
-    leftSide.style.removeProperty('user-select');
-    leftSide.style.removeProperty('pointer-events');
+                const mouseUpHandler = function () {
+                    resizer.style.removeProperty('cursor');
+                    document.body.style.removeProperty('cursor');
 
-    rightSide.style.removeProperty('user-select');
-    rightSide.style.removeProperty('pointer-events');
+                    leftSide.style.removeProperty('user-select');
+                    leftSide.style.removeProperty('pointer-events');
 
-    // Remove the handlers of `mousemove` and `mouseup`
-    document.removeEventListener('mousemove', mouseMoveHandler);
-    document.removeEventListener('mouseup', mouseUpHandler);
-  };
+                    rightSide.style.removeProperty('user-select');
+                    rightSide.style.removeProperty('pointer-events');
 
-  // Attach the handler
-  resizer.addEventListener('mousedown', mouseDownHandler);
-});
+                    // Remove the handlers of `mousemove` and `mouseup`
+                    document.removeEventListener('mousemove', mouseMoveHandler);
+                    document.removeEventListener('mouseup', mouseUpHandler);
+                };
+
+                // Attach the handler
+                resizer.addEventListener('mousedown', mouseDownHandler);
+            });
+        
