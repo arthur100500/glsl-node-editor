@@ -17,7 +17,7 @@ from template_projects.template_projects import NODE_TEMPLATE, PROJECT_TEMPLATE
 app = Flask(__name__, static_url_path='/static', template_folder='templates')
 app.secret_key = "NAMRsB7fTe7hnLOK38CJNYFSjWJyshioFYhsugMotfH39Y126Q36UduqPagu7HM5iulNm"
 
-db_session.global_init("db/users.sqlite")
+db_session.global_init("users.sqlite")
 
 
 login_manager = LoginManager()
