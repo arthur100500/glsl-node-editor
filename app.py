@@ -1,6 +1,6 @@
 import base64
 
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, send_file
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 from forms.login_form import LoginForm
@@ -16,12 +16,79 @@ from template_projects.template_projects import NODE_TEMPLATE, PROJECT_TEMPLATE
 
 app = Flask(__name__, static_url_path='/static', template_folder='templates')
 app.secret_key = "NAMRsB7fTe7hnLOK38CJNYFSjWJyshioFYhsugMotfH39Y126Q36UduqPagu7HM5iulNm"
+app.config['UPLOAD_FOLDER'] = "upload"
+app.config['MAX_CONTENT_PATH'] = 1024 * 1024 * 8
 
 db_session.global_init("users.sqlite")
 
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+
+@app.route('/pimg/<proj_id>/<tex_id>/')
+def get_proj_text_file(proj_id, tex_id):
+    session = db_session.create_session()
+    project = session.query(Project).filter(Project.id == int(proj_id)).first()
+    
+    if (project.user_id != current_user.id):
+        return "Project is not yours"
+
+    if (not 0 <= int(tex_id) <= 7):
+        return "Texture should be from 0 to 7"
+
+    filename = "noimage.png"
+    if (int(tex_id) <=4):
+        filename = ["0.png", "1.png", "2.png", "3.jpg", "4.png"][int(tex_id)] 
+
+    if (int(tex_id) == 0 and project.texture0_img != ""): filename = project.texture0_img 
+    if (int(tex_id) == 1 and project.texture1_img != ""): filename = project.texture1_img 
+    if (int(tex_id) == 2 and project.texture2_img != ""): filename = project.texture2_img
+    if (int(tex_id) == 3 and project.texture3_img != ""): filename = project.texture3_img
+    if (int(tex_id) == 4 and project.texture4_img != ""): filename = project.texture4_img
+    if (int(tex_id) == 5 and project.texture5_img != ""): filename = project.texture5_img
+    if (int(tex_id) == 6 and project.texture6_img != ""): filename = project.texture6_img
+    if (int(tex_id) == 7 and project.texture7_img != ""): filename = project.texture7_img
+
+    return send_file(f"data/texture_imgs/{filename}", mimetype='image/png')
+
+
+@app.route('/uploader/<proj_id>/<tex_id>/', methods = ['GET', 'POST'])
+def upload_file(proj_id, tex_id):
+    if request.method == 'POST':
+        proj_id, tex_id = str(proj_id), str(tex_id)
+
+        session = db_session.create_session()
+
+        if (not proj_id.isnumeric() or not tex_id.isnumeric()):
+            return "Project ID or Texture ID is not numeric"
+
+        if (not 0 <= int(tex_id) <= 7):
+            return "Texture should be from 0 to 7"
+
+        project = session.query(Project).filter(Project.id == int(proj_id)).first()
+        
+        f = request.files['file']
+        ext = f.filename.split(".")[-1]
+        fname = f"p{proj_id}s{tex_id}.{ext}"
+        
+        if (project.user_id != current_user.id):
+            return "Project is not yours"
+
+        if (int(tex_id) == 0): project.texture0_img = fname
+        if (int(tex_id) == 1): project.texture1_img = fname
+        if (int(tex_id) == 2): project.texture2_img = fname
+        if (int(tex_id) == 3): project.texture3_img = fname
+        if (int(tex_id) == 4): project.texture4_img = fname
+        if (int(tex_id) == 5): project.texture5_img = fname
+        if (int(tex_id) == 6): project.texture6_img = fname
+        if (int(tex_id) == 7): project.texture7_img = fname
+
+        session.add(project)
+        session.commit()
+        
+        f.save(f"data/texture_imgs/{fname}")
+        return 'success'
 
 
 @app.route('/set_img/<proj_id>', methods=['POST'])

@@ -18,6 +18,13 @@
                 <br>
                 <span> Made by: </span><span>{{ author.name }}</span>
                 <hr>
+                {% for i in range(8)%}
+                    <form action = "/uploader/{{ project.id }}/{{ i }}/" method = "POST" 
+                        enctype = "multipart/form-data">
+                        <input type = "file" name = "file" />
+                        <input type = "submit"/>
+                    </form>   
+                {% endfor %}
             </div>
         </div>
         <div class="resizer" id="dragger"></div>
