@@ -143,6 +143,13 @@ saveShButton.onmousedown = function () {
     download("shader.glsl", code);
 }
 
+savenotify = () => $.notify("Saved code", "success", {
+    clickToHide: true,
+    autoHide: true,
+    autoHideDelay: 1000,
+    className: "save-note"
+});
+
 savePrButton.onmousedown = function () {
     let code = "";
     for (let i = 0; i < allNodes.length; i++)
@@ -158,7 +165,7 @@ savePrButton.onmousedown = function () {
         type: 'POST',
         dataType: 'json',
         url: '/save_project',
-        data: {name: pname, desc: pdesc, json_code: code, id: pid},
+        data: { name: pname, desc: pdesc, json_code: code, id: pid },
         success: function (response) {
             if (!(response === "success")) {
                 console.log(response);
@@ -173,17 +180,29 @@ savePrButton.onmousedown = function () {
         type: 'POST',
         dataType: 'data',
         url: '/set_img/' + pid,
-        data: {img: glCanvas.toDataURL()},
+        data: { img: glCanvas.toDataURL() },
         success: function (response) {
             if (!(response === "success")) {
                 console.log(response);
             }
+            else
+                savenotify();
         },
         error: function (error) {
-            console.log(error);
+            if (error.status === 200)
+                savenotify();
         }
     });
 }
+
+document.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.key === 's') {
+        // Prevent the Save dialog to open
+        e.preventDefault();
+        // Place your code here
+        savePrButton.onmousedown();
+    }
+});
 
 function loadFromJson(json) {
     function findOutput(outputName) {
@@ -237,5 +256,5 @@ function loadFromJson(json) {
 
 // load current project
 let m = document.querySelector("#json-code");
-loadFromJson(m.dataset.jsonCode)
-compileButton.onmousedown()
+loadFromJson(m.dataset.jsonCode);
+compileButton.onmousedown();

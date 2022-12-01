@@ -1,3 +1,10 @@
+savenotify = () => $.notify("Saved code", "success", {
+    clickToHide: true,
+    autoHide: true,
+    autoHideDelay: 1000,
+    className: "save-note"
+});
+
 saveBtn.onmousedown = function () {
     let text = editor.getValue().replace(/ *\/\/([^\n]*) */g, "");
 
@@ -13,7 +20,7 @@ saveBtn.onmousedown = function () {
 
     let node = nodeFromFunctionPr(actualText, unifsNattribs);
 
-    let node_data = {name: node.name, json_code: editor.getValue(), id: nodeId};
+    let node_data = { name: node.name, json_code: editor.getValue(), id: nodeId };
     $.ajax({
         type: 'POST',
         dataType: 'json',
@@ -23,9 +30,23 @@ saveBtn.onmousedown = function () {
             if (!(response === "success")) {
                 console.log(response);
             }
+            else {
+                savenotify()
+            }
         },
         error: function (error) {
-            console.log(error);
+            if (error.status === 200)
+                savenotify()
         }
     });
 }
+
+
+document.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.key === 's') {
+        // Prevent the Save dialog to open
+        e.preventDefault();
+        // Place your code here
+        saveBtn.onmousedown();
+    }
+});
