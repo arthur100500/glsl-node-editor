@@ -32,6 +32,7 @@
 }
 
 #node-preview {
+  background-color: #161616;
   position: relative;
   top: 40px;
   width: 100%;

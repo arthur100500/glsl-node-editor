@@ -2,6 +2,7 @@ body {
   margin: 0;
   line-height: 1;
   position: relative;
+  background-color: #202020;
 }
 
 .navbar {
@@ -21,11 +22,11 @@ body {
   display: grid;
   grid-template-columns: 1fr 3fr;
   height: 60px;
-  box-shadow: 0 1px 0 rgb(0 0 0 / 20%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
   z-index: 11;
   position: absolute;
   width: 100%;
-  background-color: #fff;
+  background-color: #282828;
 }
 
 .onepxvoid {
@@ -52,8 +53,19 @@ a {
   padding: 14px 16px;
   margin-top: 10px;
   text-decoration: none;
-  color: #3e3e3e;
+  color: #ececec;
   font-size: 20px;
+}
+
+a:not([href]) {
+  padding: 14px 16px;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #ff7133;
+  font-size: 20px;
+}
+a:not([href]):hover {
+  color: #ff7133;
 }
 
 a:hover {
@@ -63,7 +75,7 @@ a:hover {
 }
 
 .ftr {
-  border-top: 1px solid rgb(0 0 0 / 20%);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   height: 90px;
   margin-top: auto;
   box-sizing: inherit;
@@ -75,4 +87,13 @@ a:hover {
   margin: 30px;
   color: #3e3e3e;
   font-size: 20px;
+}
+
+hr {
+  border-top: 1px solid #404040;
+}
+
+h1 {
+  font-size: 350%;
+  color: #eeeeee;
 }

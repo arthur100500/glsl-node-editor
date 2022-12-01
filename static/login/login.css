@@ -21,9 +21,18 @@
 }
 
 form {
-  background-color: #fefefe;
+  background-color: #252525;
   border-radius: 10px;
   padding: 40px;
   margin: 40px;
+  border: 1px solid #404040;
   box-shadow: 0 0 20px rgb(0 0 0 / 15%);
+}
+
+.form-control {
+    background-color: #181818;
+}
+
+label {
+  color: #dddddd;
 }

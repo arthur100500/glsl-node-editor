@@ -1,7 +1,7 @@
 let latestNodeID = 0;
 
-const nodeBgColor = "#eeeeee";
-const dragableHeaderBgColor = "#d0d0d0";
+const nodeBgColor = "#303030";
+const dragableHeaderBgColor = "#424242";
 
 const typeColors = {
 	"int": "#0022ff",
@@ -39,7 +39,7 @@ class HeaderRectBackground {
 }
 
 class Node {
-	constructor(functional=true) {
+	constructor(functional = true) {
 		// Logic
 		this.name = "New node";
 		this.code = "";
@@ -80,13 +80,13 @@ class Node {
 			this.height = 20 + (this.inputs.length + this.parameters.length) * 30;
 	}
 
-	updateContStyle(){
+	updateContStyle() {
 		this.nodeContainer.style = "position:absolute; left:" + this.positionX + "px; top:" + this.positionY + "px; height:" + this.height + "px;";
 	}
 
 	draw(target) {
 		this.recountGraphicParams();
-		
+
 		// Container
 		this.nodeContainer.className = "node-container";
 		this.nodeContainer.id = "node" + this.id;
@@ -98,14 +98,14 @@ class Node {
 		this.dragableHeader.id = "node" + this.id + "header";
 		this.dragableHeader.style = "position:absolute; left:" + 0 + "px; top:" + 0 + "px;;";
 		this.dragableHeader.innerHTML = this.dragableHeaderbg.getHtml() + "<span style=\"position:absolute; width: " + this.width + "px; left:0px; top:3px; text-align: center; font-size: 14pt;\"><b>" + this.name.replaceAll("_", " ") + "</b></span>";
-		
+
 		// Close button
 		let nodeRemoveBtn = document.createElement("span");
 		nodeRemoveBtn.className = "close";
 		nodeRemoveBtn.innerHTML = "&times;";
 		nodeRemoveBtn.style = "position: absolute; top: -7px; right: -5px; width: 30px;";
 		nodeRemoveBtn.node = this;
-		nodeRemoveBtn.onmousedown = function(){this.node.destroy();};
+		nodeRemoveBtn.onmousedown = function () { this.node.destroy(); };
 		this.dragableHeader.appendChild(nodeRemoveBtn);
 
 
@@ -123,7 +123,7 @@ class Node {
 			// Set connectable interface
 			this.output.setDivRepr(outputDiv);
 			if (this.functional)
-			setAbleToConnectFrom(outputDiv, this.output);
+				setAbleToConnectFrom(outputDiv, this.output);
 		}
 
 		// Parameters
@@ -149,34 +149,34 @@ class Node {
 			// Set connectable interface
 			this.inputs[i].setDivRepr(inputDiv);
 			if (this.functional)
-			setAbleToConnectTo(inputDiv, this.inputs[i]);
+				setAbleToConnectTo(inputDiv, this.inputs[i]);
 		}
 		target.appendChild(this.nodeContainer);
 
-		if(this.functional)
-		dragElement(this.nodeContainer);
+		if (this.functional)
+			dragElement(this.nodeContainer);
 	}
-	
-	destroy(){
+
+	destroy() {
 		// remove body
 		mainEditorDiv.removeChild(this.nodeContainer);
 		// remove input
-		for(let i = 0; i < this.inputs.length; i++){
-			if(this.inputs[i].connectedSourceVisualConnection !== null){
+		for (let i = 0; i < this.inputs.length; i++) {
+			if (this.inputs[i].connectedSourceVisualConnection !== null) {
 				this.inputs[i].connectedSource = null;
 				mainEditorDiv.removeChild(this.inputs[i].connectedSourceVisualConnection.connectorContainer);
 			}
 		}
-		
-		for(let i = 0; i < allNodes.length; i++){
-			for(let j = 0; j < allNodes[i].inputs.length; j++){
-				if (allNodes[i].inputs[j].connectedSource === this.output){
+
+		for (let i = 0; i < allNodes.length; i++) {
+			for (let j = 0; j < allNodes[i].inputs.length; j++) {
+				if (allNodes[i].inputs[j].connectedSource === this.output) {
 					allNodes[i].inputs[j].connectedSource = null;
 					mainEditorDiv.removeChild(allNodes[i].inputs[j].connectedSourceVisualConnection.connectorContainer);
 				}
 			}
 		}
-		
+
 		allNodes.splice(allNodes.indexOf(this), 1);
 	}
 
@@ -194,7 +194,7 @@ class Node {
 }
 
 class NodeInput {
-	constructor(baseNode, dataType, inputName, id, functional=true) {
+	constructor(baseNode, dataType, inputName, id, functional = true) {
 		this.divRepr = null;
 
 		this.functional = functional;
@@ -290,7 +290,7 @@ class NodeInput {
 }
 
 class NodeOutput {
-	constructor(baseNode, dataType, outputName, id, functional=true) {
+	constructor(baseNode, dataType, outputName, id, functional = true) {
 		this.divRepr = null;
 
 		this.functional = functional;

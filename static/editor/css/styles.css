@@ -1,12 +1,14 @@
 body {
   font-family: "Lucida Console", monospace;
   overflow: hidden;
+  color:#303030;
 }
 
 .node-header {
   user-select: none;
   border-radius: 6px;
   box-shadow: 0 0 10px rgb(0 0 0 / 50%); /* Параметры тени */
+  color: #aaaaaa;
 }
 
 .control-btn-green {
@@ -19,7 +21,7 @@ body {
   margin-right: 5px;
   border-radius: 12px;
   background-color: #0f5;
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 100%;
 }
 
@@ -33,7 +35,7 @@ body {
   margin-right: 5px;
   border-radius: 12px;
   background-color: #f40;
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 100%;
 }
 
@@ -46,8 +48,8 @@ body {
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 12px;
-  background-color: #e7e7e7;
-  color: black;
+  background-color: #343434;
+  color: rgb(255, 255, 255);
   font-size: 100%;
 }
 
@@ -60,8 +62,8 @@ body {
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 12px;
-  background-color: #e7e7e7;
-  color: black;
+  background-color: #303030;
+  color: rgb(255, 255, 255);
   font-size: 100%;
 }
 
@@ -73,8 +75,8 @@ body {
   margin-left: 5px;
   margin-right: 5px;
   border-radius: 12px;
-  background-color: #a7a7a7;
-  color: black;
+  background-color: #5e5e5e;
+  color: rgb(255, 255, 255);
   font-size: 100%;
 }
 
@@ -87,6 +89,7 @@ body {
 }
 
 .main-div {
+  background-color:#303030;
   z-index: 3;
   left: 0;
   top: 0;
@@ -96,6 +99,10 @@ body {
   margin-left: 6px;
 }
 
+.pr-name-container span {
+  color: #c4c4c4;
+}
+
 .pr-name {
   font-size: 300%;
   color: #ff7133;
@@ -103,7 +110,7 @@ body {
 
 .pr-desc {
   font-size: 160%;
-  color: #3e3e3e;
+  color: #ffffff;
 }
 
 .page-layout {
@@ -133,11 +140,12 @@ body {
   width: 39%;
   height: 100%;
   box-shadow: 0 0 10px rgb(0 0 0 / 50%);
-  background-color: #dedede;
+  background-color: #1f1f1f;
   overflow-y: scroll;
 }
 
 .node-editor {
+  background-color:#202020;
   width: 60%;
   height: 100%;
   flex: 1 1 0%;
@@ -145,24 +153,25 @@ body {
 
 #control-panel {
   z-index: 7;
-  background-color: #fff;
+  background-color: #282828;
   position: absolute;
   left: 0;
   width: 100%;
   display: grid;
   grid-template-columns: 200px 200px 200px 200px;
-  box-shadow: 0 1px 0 rgb(0 0 0 / 20%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 #context-menu {
   position: fixed;
   z-index: 10000;
   width: 150px;
-  background: #eee;
+  background: rgb(27, 27, 27);
   border-radius: 5px;
   transform: scale(0);
   transform-origin: top left;
   transition: transform 200ms ease-in-out;
+  color: #aaaaaa;
 }
 
 #context-menu.visible {
@@ -192,17 +201,17 @@ body {
 }
 
 #context-menu .item-sml:hover {
-  background: #e0e0e0;
+  background: #dfdfdf;
   border-radius: 5px;
 }
 
 #context-menu .item:hover {
-  background: #e0e0e0;
+  background: #222222;
   border-radius: 5px;
 }
 
 .parameter-input {
-  background: #fff;
+  background: rgb(0, 0, 0);
   width: 50px;
   margin-left: 2px;
   top: -3px;
@@ -213,7 +222,7 @@ body {
 }
 
 #node-creator {
-  background: #eee;
+  background: rgb(22, 22, 22);
   border: 0;
   border-radius: 5px;
   position: absolute;
@@ -248,24 +257,25 @@ body {
 }
 
 #node-creator .control-btn {
-  background-color: #c0c0c0;
+  background-color: #444444;
 }
 
 #node-creator .control-btn:hover {
-  background-color: #a0a0a0;
+  background-color: #555555;
 }
 
 .close {
   font-size: 37px;
   overflow-wrap: break-word;
-  color: #555;
+  color: #c7c7c7;
   font-weight: 10;
+  text-shadow: none;
 }
 
 .close:hover {
   font-size: 37px;
   overflow-wrap: break-word;
-  color: #000;
+  color: #ffffff;
   font-weight: 10;
 }
 
@@ -320,8 +330,12 @@ body {
 }
 
 .resizer {
-  background-color: #cbd5e0;
+  background-color: #404040;
   cursor: ew-resize;
   height: 100%;
   width: 2px;
+}
+
+hr {
+  border-top: 2px solid #404040;
 }
