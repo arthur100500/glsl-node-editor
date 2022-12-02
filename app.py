@@ -53,7 +53,7 @@ def get_proj_text_file(proj_id, tex_id):
     return send_file(f"data/texture_imgs/{filename}", mimetype='image/png')
 
 
-@app.route('/uploader/<proj_id>/<tex_id>/', methods = ['GET', 'POST'])
+@app.route('/uploader/<proj_id>/<tex_id>/', methods = ['POST'])
 def upload_file(proj_id, tex_id):
     if request.method == 'POST':
         proj_id, tex_id = str(proj_id), str(tex_id)

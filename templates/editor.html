@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/static/editor/css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/less"></script>
     <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
+    <script src="/static/editor/js/tester/texturechange.js"></script>
 
     <div class="page-layout" id="page-layout">
         <div class="pr-data-container">
@@ -18,13 +19,18 @@
                 <br>
                 <span> Made by: </span><span>{{ author.name }}</span>
                 <hr>
-                {% for i in range(8)%}
-                    <form action = "/uploader/{{ project.id }}/{{ i }}/" method = "POST" 
-                        enctype = "multipart/form-data">
-                        <input type = "file" name = "file" />
-                        <input type = "submit"/>
-                    </form>   
+                <h3>Change textures used:</h3>
+                <div class="texture-upload-c">
+                {% for i in range(8)%} 
+                <div class="texture-img-preview">
+                    <img class="texture-img-img" src="/pimg/{{project.id}}/{{i}}">
+                    <label for="texture-upload-{{i}}" class="texture-upload">
+                        Change texture {{i}}
+                    </label>
+                </div>
+                     <input style="display: none;" id="texture-upload-{{i}}" name="file" addr="/uploader/{{ project.id }}/{{ i }}/" type="file" onchange="changeTextureImage(this);">
                 {% endfor %}
+                </div>
             </div>
         </div>
         <div class="resizer" id="dragger"></div>

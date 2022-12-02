@@ -339,3 +339,58 @@ body {
 hr {
   border-top: 2px solid #404040;
 }
+
+.texture-img-preview{
+  border: 1px solid #404040;
+  background-color: #222222;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.texture-img-preview:hover{
+  border: 1px solid #454545;
+  background-color: #303030;
+  padding: 10px;
+}
+
+.texture-upload {
+  color: #aaaaaa;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border-radius: 5px;
+  border: 1px solid #404040;
+  background-color: #222222;
+  box-shadow: 0 0 20px rgb(0 0 0 / 5%);
+  transition: background-color ease-in-out 60ms,
+  box-shadow ease-in-out 60ms,
+  border ease-in-out 60ms;
+}
+
+.texture-upload:hover {
+  text-align: center;
+  background-color: #303030;
+  border: 1px solid #ff7133;
+  box-shadow: 0 0 5px #ff70338e;
+  transition: background-color ease-in-out 60ms,
+  box-shadow ease-in-out 60ms,
+  border ease-in-out 60ms;
+}
+
+.texture-upload-c {
+  margin-left:20px;
+  margin-right: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.texture-img-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+}
+
+h3 {
+  color: #9f9f9f;
+}

@@ -46,7 +46,7 @@ body {
 .main-content {
   top: 60px;
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 60px);
 }
 
 a {
