@@ -21,7 +21,6 @@ function main() {
 // Additional elements will be appended to the file beginning
 // Additional parameters will be used as additional arguments for a function
 function nodeFromFunction(fnCode, additionalElems = [], additionalParams = []) {
-    latestNodeID++;
     fnCode = fnCode.trim();
     node = new Node();
     node.additionElements = additionalElems;
@@ -220,7 +219,6 @@ function loadFromJson(json) {
         let parsed = new Node();
         parsed.name = projectObject[i].name;
         parsed.code = projectObject[i].code;
-        parsed.id = projectObject[i].id;
         parsed.additionElements = projectObject[i].additionElements;
         parsed.height = projectObject[i].height;
         parsed.width = projectObject[i].width;

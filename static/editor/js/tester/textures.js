@@ -37,20 +37,23 @@ function loadTexture(gl, url) {
   return texture;
 }
 
-const gl = glCanvas.getContext("webgl", { preserveDrawingBuffer: true }) || glCanvas.getContext("experimental-webgl", { preserveDrawingBuffer: true });
-if (!gl)
-  alert("Your browser does not support WebGL");
+function loadTextures() {
+  const gl = glCanvas.getContext("webgl", { preserveDrawingBuffer: true }) || glCanvas.getContext("experimental-webgl", { preserveDrawingBuffer: true });
+  if (!gl)
+    alert("Your browser does not support WebGL");
 
-gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 
-let pid = document.querySelector("#project-id").dataset.projectId
+  const pid = document.querySelector("#project-id").dataset.projectId
 
-texture1 = loadTexture(gl, '/pimg/' + pid + '/0');
-texture2 = loadTexture(gl, '/pimg/' + pid + '/1');
-texture3 = loadTexture(gl, '/pimg/' + pid + '/2');
-texture4 = loadTexture(gl, '/pimg/' + pid + '/3');
-texture5 = loadTexture(gl, '/pimg/' + pid + '/4');
-texture6 = loadTexture(gl, '/pimg/' + pid + '/5');
-texture7 = loadTexture(gl, '/pimg/' + pid + '/6');
-texture8 = loadTexture(gl, '/pimg/' + pid + '/7');
+  texture1 = loadTexture(gl, '/pimg/' + pid + '/0');
+  texture2 = loadTexture(gl, '/pimg/' + pid + '/1');
+  texture3 = loadTexture(gl, '/pimg/' + pid + '/2');
+  texture4 = loadTexture(gl, '/pimg/' + pid + '/3');
+  texture5 = loadTexture(gl, '/pimg/' + pid + '/4');
+  texture6 = loadTexture(gl, '/pimg/' + pid + '/5');
+  texture7 = loadTexture(gl, '/pimg/' + pid + '/6');
+  texture8 = loadTexture(gl, '/pimg/' + pid + '/7');
+}
 
+loadTextures();

@@ -1,3 +1,10 @@
+changedSucc = () => $.notify("Changed successfully, refresh the page", "success", {
+    clickToHide: true,
+    autoHide: true,
+    autoHideDelay: 1000,
+    className: "save-note"
+});
+
 function changeTextureImage(obj) {
     let myFormData = new FormData();
     myFormData.append('file', obj.files[0]);
@@ -13,11 +20,13 @@ function changeTextureImage(obj) {
             if (!(response === "success")) {
                 console.log(response);
             }
-            alert(response);
+            else {
+                changedSucc();
+            }
         },
         error: function (error) {
-            console.log(error);
-            alert(error.status);
+            if (error.status === 200)
+                changedSucc();
         }
     });
 }
