@@ -1,17 +1,17 @@
 
-forms/__pycache__/login_form.cpython-310.pyc
-forms/__pycache__/register_form.cpython-310.pyc
+src/forms/__pycache__/login_form.cpython-310.pyc
+src/forms/__pycache__/register_form.cpython-310.pyc
 .idea/
 __pycache__
 
-static/project_imgs/*
+src/static/project_imgs/*
 
-data/db/*
-data/texture_imgs/*
+src/data/db/*
+src/data/texture_imgs/*
 
-node_modules/*
-static/editor/css/styles.css
-templates/editor.html
+src/node_modules/*
+src/static/editor/css/styles.css
+src/templates/editor.html
 
 *.sqlite
 

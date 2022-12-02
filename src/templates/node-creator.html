@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <link rel="stylesheet" href="/static/node-create/css/node-create.css">
+    <link rel="stylesheet" href="/static/editor/css/styles.css">
+    <div id="control-panel">
+        <button class="control-btn" id="compile"><i class="arrow arrow-right-compile"></i>Compile</button>
+        <button class="control-btn" id="save">Save Node</button>
+    </div>
+    <div class="content-grid">
+        <div class="node-creator-g">
+            <div class="main-editor">
+                <div id="editor">
+                </div>
+            </div>
+        </div>
+        <div id="node-preview">
+            <div class="node-holder"></div>
+        </div>
+    </div>
+
+    <meta id="node-data" data-node-id="{{ node.id }}" data-node-code="{{ node.json_code }}">
+    <script src="/static/node-create/js/utils.js"></script>
+    <script src="/static/editor/js/base/nodes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js" type="text/javascript"></script>
+    <script src="https://raw.githack.com/BobHuNanjing/myeditor/master/ace/mode/mode-lpmln" type="text/javascript"
+            charset="utf-8"></script>
+
+    <script src="/static/node-create/js/main.js"></script>
+    <script src="/static/node-create/js/preview.js"></script>
+    <script src="/static/node-create/js/save.js"></script>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <link rel="stylesheet" href="/static/explore/css/styles.css">
+    <div class="p-title">
+        <h1> Projects </h1>
+        <a style="padding-left: 0" href="explore/nodes">Also see Nodes!</a>
+    </div>
+    <hr>
+    <div class="explore">
+        {% for project in projects %}
+            <div class="project" onclick="document.location = '/project/{{ project.id }}'">
+                <div class="project-image">
+                    <img class="pr-img" src="/static/project_imgs/{{ project.img_src }}">
+                </div>
+                <div class="project-data">
+                    <span> <b>{{ project.name }}</b> by {{ project.user.name }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

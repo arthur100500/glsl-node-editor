@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <link rel="stylesheet" href="/static/nodes/css/styles.css">
+    <div class="p-title">
+        <h1> Nodes </h1>
+        <a style="padding-left: 0" href="/">Also see Projects!</a>
+    </div>
+    <hr>
+    <script src="/static/explore/js/nodesadd.js"></script>
+    <div class="explore">
+        {% for node in nodes %}
+            <div class="node-c">
+            <div class="node" onclick="document.location = '/node/{{ node.id }}'">
+                <div class="node-data">
+                    <span> <b>{{ node.name }}</b> by {{ node.user.name }}</span>
+                </div>
+            </div>
+            {% if (node.id|string) in (current_user.used_nodes|string) %}
+                <div class="used" onmousedown="addNodeAjaxWID({{ node.id }}, changeStyle, this)">
+            {% else %}
+                <div class="unused" onmousedown="addNodeAjaxWID({{ node.id }}, changeStyle, this)">
+            {% endif %}
+        {% if (node.id|string) in (current_user.used_nodes|string) %}
+            <span> Used </span>
+        {% else %}
+            <span> Use </span>
+        {% endif %}
+        </div>
+        </div>
+        {% endfor %}
+
+        </div>
+
+{% endblock %}

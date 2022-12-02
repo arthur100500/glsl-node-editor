@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <link rel="stylesheet" href="/static/login/login.css">
+
+    <div class="signin-grid">
+        <div>
+            <form action="" method="post">
+                {{ login_form.hidden_tag() }}
+                <h1>Login</h1>
+                <hr>
+                <p>
+                    {{ login_form.email.label }}<br>
+                    {{ login_form.email(class="form-control", type="email") }}<br>
+                    {% for error in login_form.email.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ login_form.password.label }}<br>
+                    {{ login_form.password(class="form-control", type="password") }}<br>
+                    {% for error in login_form.password.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </p>
+                <p>{{ login_form.remember_me() }} {{ login_form.remember_me.label }}</p>
+                <p>
+                    {{ login_form.submit(type="submit", class="btn btn-primary") }}
+                </p>
+                <div>{{ login_message }}</div>
+            </form>
+        </div>
+        <div>
+            <form action="" method="post">
+                {{ register_form.hidden_tag() }}
+                {{ register_form.csrf_token }}
+                <h1>Register</h1>
+                <hr>
+                <p>
+                    {{ register_form.email.label }}<br>
+                    {{ register_form.email(class="form-control", type="email") }}<br>
+                    {% for error in register_form.email.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ register_form.password.label }}<br>
+                    {{ register_form.password(class="form-control", type="password") }}<br>
+                    {% for error in register_form.password.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ register_form.password_again.label }}<br>
+                    {{ register_form.password_again(class="form-control", type="password") }}<br>
+                    {% for error in register_form.password_again.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ register_form.name.label }}<br>
+                    {{ register_form.name(class="form-control") }}<br>
+                    {% for error in register_form.name.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ register_form.submit(type="submit", class="btn btn-primary") }}
+                </p>
+                {{ register_message }}
+            </form>
+        </div>
+    </div>
+{% endblock %}
