@@ -18,3 +18,5 @@ templates/editor.html
 users.sqlite
 *.sqlite
 users.sqlite
+*.jpeg
+*.png

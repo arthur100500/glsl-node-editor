@@ -21,6 +21,7 @@ function main() {
 // Additional elements will be appended to the file beginning
 // Additional parameters will be used as additional arguments for a function
 function nodeFromFunction(fnCode, additionalElems = [], additionalParams = []) {
+    latestNodeID++;
     fnCode = fnCode.trim();
     node = new Node();
     node.additionElements = additionalElems;
