@@ -99,18 +99,25 @@ body {
   margin-left: 6px;
 }
 
-.pr-name-container span {
-  color: #c4c4c4;
-}
-
 .pr-name {
   font-size: 300%;
   color: #ff7133;
+  margin-bottom: 20px;
 }
 
 .pr-desc {
   font-size: 160%;
   color: #ffffff;
+}
+
+.pr-auth-lbl {
+  font-size: 140%;
+  color: #909090;
+}
+
+.pr-auth {
+  font-size: 140%;
+  color: #ff7133;
 }
 
 .page-layout {
@@ -136,6 +143,19 @@ body {
 }
 
 .pr-data-container {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
   z-index: 5;
   width: 39%;
   height: 100%;
@@ -201,7 +221,7 @@ body {
 }
 
 #context-menu .item-sml:hover {
-  background: #dfdfdf;
+  background: #222222;
   border-radius: 5px;
 }
 
