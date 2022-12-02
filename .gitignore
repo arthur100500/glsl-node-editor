@@ -3,13 +3,15 @@ forms/__pycache__/login_form.cpython-310.pyc
 forms/__pycache__/register_form.cpython-310.pyc
 .idea/
 __pycache__
-static/project_imgs/
+
+static/project_imgs/*
+
+data/db/*
+data/texture_imgs/*
+
 node_modules/*
-node_modules
-data/texture_imgs/p2s0.webp
-data/texture_imgs/p2s1.png
 static/editor/css/styles.css
-static/project_imgs/2.png
 templates/editor.html
 
-*.jpeg
+*.sqlite
+
