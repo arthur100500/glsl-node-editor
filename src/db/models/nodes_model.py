@@ -1,10 +1,10 @@
-import sqlalchemy
-import datetime
-from db.db_session import SqlAlchemyBase, orm
-from werkzeug.security import generate_password_hash, check_password_hash
+""" Module for node model class """
 
+import sqlalchemy
+from db.db_session import SqlAlchemyBase, orm
 
 class NodeModel(SqlAlchemyBase):
+    """ Node model """
     __tablename__ = 'nodes'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)

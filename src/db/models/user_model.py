@@ -1,12 +1,14 @@
+""" Module for user model class """
+
 import sqlalchemy
 import datetime
-from db.db_session import SqlAlchemyBase, orm
 from flask_login import UserMixin
-
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from db.db_session import SqlAlchemyBase, orm
 
 class UserModel(SqlAlchemyBase, UserMixin):
+    """ User model """
     __tablename__ = 'users'
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
