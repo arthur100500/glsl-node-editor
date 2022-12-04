@@ -33,7 +33,7 @@ class NodeFactory {
         newNode.id = code.id;
         newNode.parameters = [];
         newNode.inputs = [];
-        Node.latestNodeID = Math.max(Node.latestNodeID, newNode.id);
+        Node.latestNodeID = Math.max(Node.latestNodeID, newNode.id + 1);
 
         return newNode;
     }
