@@ -17,3 +17,4 @@ src/templates/editor.html
 *.sqlite
 
 src/static/node-create/js/generated/main.js
+src/static/editor/js/generated/main.js
