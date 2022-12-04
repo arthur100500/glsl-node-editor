@@ -22,7 +22,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 3fr;
   height: 60px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 20%);
   z-index: 11;
   position: absolute;
   width: 100%;
@@ -64,9 +64,6 @@ a:not([href]) {
   color: #ff7133;
   font-size: 20px;
 }
-a:not([href]):hover {
-  color: #ff7133;
-}
 
 a:hover {
   text-decoration: none;
@@ -74,8 +71,12 @@ a:hover {
   font-size: 20px;
 }
 
+a:not([href]):hover {
+  color: #ff7133;
+}
+
 .ftr {
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgb(255 255 255 / 20%);
   height: 90px;
   margin-top: auto;
   box-sizing: inherit;
@@ -95,5 +96,5 @@ hr {
 
 h1 {
   font-size: 350%;
-  color: #eeeeee;
+  color: #eee;
 }

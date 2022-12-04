@@ -7,20 +7,22 @@
   margin: 10px;
   border-radius: 10px;
   border: 1px solid #404040;
-  background-color: #222222;
+  background-color: #222;
   box-shadow: 0 0 20px rgb(0 0 0 / 5%);
-  transition: background-color ease-in-out 60ms,
-  box-shadow ease-in-out 60ms,
-  border ease-in-out 60ms;
+  transition:
+    background-color ease-in-out 60ms,
+    box-shadow ease-in-out 60ms,
+    border ease-in-out 60ms;
 }
 
 .project:hover {
   background-color: #303030;
   border: 1px solid #ff7133;
   box-shadow: 0 0 5px #ff70338e;
-  transition: background-color ease-in-out 60ms,
-  box-shadow ease-in-out 60ms,
-  border ease-in-out 60ms;
+  transition:
+    background-color ease-in-out 60ms,
+    box-shadow ease-in-out 60ms,
+    border ease-in-out 60ms;
 }
 
 .pr-img {
@@ -32,7 +34,7 @@
 
 .project-data {
   font-size: 130%;
-  color: rgb(255, 113, 51);
+  color: rgb(255 113 51);
   margin: 10px;
 }
 
