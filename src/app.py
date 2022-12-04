@@ -54,12 +54,29 @@ editor_bundle = Bundle(
     'editor/js/loader/projectloader.js',
     'editor/js/zoom/zoom.js',
     'editor/js/resize/resize.js',
+    'editor/js/sort/sort.js',
     output='editor/js/generated/main.js'
+)
+
+node_create_bundle = Bundle(
+    "node-create/js/utils.js",
+    'editor/js/nodes/colors.js',
+    'editor/js/nodes/headerbg.js',
+    'editor/js/nodes/node.js',
+    'editor/js/nodes/rectbg.js',
+    'editor/js/nodes/nodeinput.js',
+    'editor/js/nodes/nodeoutput.js',
+    'editor/js/nodes/nodeparameter.js',
+    'editor/js/nodes/nodefactory.js',
+    "node-create/js/main.js",
+    "node-create/js/preview.js",
+    "node-create/js/save.js",
+    output='node-create/js/generated/main.js'
 )
 
 assets = Environment(app)
 assets.register('editor_js', editor_bundle)
-
+assets.register('node_create_js', node_create_bundle)
 
 
 @app.route('/pimg/<proj_id>/<tex_id>/')
