@@ -1,7 +1,6 @@
 const loadFromJson = (json) => {
     const nodeFactory = new NodeFactory();
     const findOutput = (outputName) => {
-        console.log(outputName);
         for (let i = 0; i < Editor.allNodes.length; i++)
             if (Editor.allNodes[i].output.fullName() === outputName)
                 return Editor.allNodes[i].output;
