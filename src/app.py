@@ -71,6 +71,24 @@ node_create_bundle = Bundle(
     "node-create/js/main.js",
     "node-create/js/preview.js",
     "node-create/js/save.js",
+    filters='jsmin', 
+    output='node-create/js/generated/main.js'
+)
+
+node_create_bundle = Bundle(
+    "node-create/js/utils.js",
+    'editor/js/nodes/colors.js',
+    'editor/js/nodes/headerbg.js',
+    'editor/js/nodes/node.js',
+    'editor/js/nodes/rectbg.js',
+    'editor/js/nodes/nodeinput.js',
+    'editor/js/nodes/nodeoutput.js',
+    'editor/js/nodes/nodeparameter.js',
+    'editor/js/nodes/nodefactory.js',
+    "node-create/js/main.js",
+    "node-create/js/preview.js",
+    "node-create/js/save.js",
+    filters='jsmin', 
     output='node-create/js/generated/main.js'
 )
 
