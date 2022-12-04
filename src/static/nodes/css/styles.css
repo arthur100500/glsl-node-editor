@@ -16,20 +16,22 @@
   grid-template-columns: 1fr 250px;
   border-radius: 10px;
   border: 1px solid #404040;
-  background-color: #222222;
+  background-color: #222;
   box-shadow: 0 0 20px rgb(0 0 0 / 5%);
-  transition: background-color ease-in-out 60ms,
-  box-shadow ease-in-out 60ms,
-  border ease-in-out 60ms;
+  transition:
+    background-color ease-in-out 60ms,
+    box-shadow ease-in-out 60ms,
+    border ease-in-out 60ms;
 }
 
 .node:hover {
   border: 1px solid #ff7133;
   box-shadow: 0 0 5px #ff70338e;
   background-color: #303030;
-  transition: background-color ease-in-out 60ms,
-  box-shadow ease-in-out 60ms,
-  border ease-in-out 60ms;
+  transition:
+    background-color ease-in-out 60ms,
+    box-shadow ease-in-out 60ms,
+    border ease-in-out 60ms;
 }
 
 .node-data {
@@ -48,7 +50,7 @@
     "Noto Color Emoji";
   display: inherit;
   font-size: 200%;
-  color: #dddddd;
+  color: #ddd;
 }
 
 .used {
@@ -76,9 +78,10 @@
   background-color: #202020;
   box-shadow: 0 0 20px rgb(0 0 0 / 5%);
   text-align: center;
-  transition: background-color ease-in-out 60ms,
-  box-shadow ease-in-out 60ms,
-  border ease-in-out 60ms;
+  transition:
+    background-color ease-in-out 60ms,
+    box-shadow ease-in-out 60ms,
+    border ease-in-out 60ms;
 }
 
 .unused {
@@ -106,27 +109,30 @@
   background-color: #202020;
   box-shadow: 0 0 20px rgb(0 0 0 / 5%);
   text-align: center;
-  transition: background-color ease-in-out 60ms,
-  box-shadow ease-in-out 60ms,
-  border ease-in-out 60ms;
+  transition:
+    background-color ease-in-out 60ms,
+    box-shadow ease-in-out 60ms,
+    border ease-in-out 60ms;
 }
 
 .used:hover {
   background-color: #303030;
   border: 1px solid #10ff00;
   box-shadow: 0 0 5px #10ff008e;
-  transition: background-color ease-in-out 60ms,
-  box-shadow ease-in-out 60ms,
-  border ease-in-out 60ms;
+  transition:
+    background-color ease-in-out 60ms,
+    box-shadow ease-in-out 60ms,
+    border ease-in-out 60ms;
 }
 
 .unused:hover {
   background-color: #303030;
   border: 1px solid #ff1000;
   box-shadow: 0 0 5px #ff10008e;
-  transition: background-color ease-in-out 60ms,
-  box-shadow ease-in-out 60ms,
-  border ease-in-out 60ms;
+  transition:
+    background-color ease-in-out 60ms,
+    box-shadow ease-in-out 60ms,
+    border ease-in-out 60ms;
 }
 
 .node-c {

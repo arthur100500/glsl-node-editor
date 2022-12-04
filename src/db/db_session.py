@@ -1,17 +1,19 @@
+""" Module that provides session methods """
+
 import sqlalchemy as sa
-import sqlalchemy.orm as orm
+from sqlalchemy import orm
 from sqlalchemy.orm import Session
 import sqlalchemy.ext.declarative as dec
 
 SqlAlchemyBase = dec.declarative_base()
 
-__factory = None
+FACTORY = None
 
+def global_init(db_file: str) -> None:
+    """ Init database connection """
+    global FACTORY
 
-def global_init(db_file):
-    global __factory
-
-    if __factory:
+    if FACTORY:
         return
 
     if not db_file or not db_file.strip():
@@ -21,11 +23,12 @@ def global_init(db_file):
     print(f"Подключение к базе данных по адресу {conn_str}")
 
     engine = sa.create_engine(conn_str, echo=False)
-    __factory = orm.sessionmaker(bind=engine)
+    FACTORY = orm.sessionmaker(bind=engine)
 
     SqlAlchemyBase.metadata.create_all(engine)
 
 
 def create_session() -> Session:
-    global __factory
-    return __factory()
+    """ Get session """
+    global FACTORY
+    return FACTORY()

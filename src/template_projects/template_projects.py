@@ -1,3 +1,5 @@
+""" Module for template projects. These projects will be used when a new one is created """
+
 NODE_TEMPLATE = """
 // Welcome to node creator!
 // You can write a function that will become a node, use GLSL syntax for that
