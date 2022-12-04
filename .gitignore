@@ -5,6 +5,7 @@ src/forms/__pycache__/register_form.cpython-310.pyc
 __pycache__
 
 src/static/project_imgs/*
+src/static/.webassets-cache/*
 
 src/data/db/*
 src/data/texture_imgs/*
@@ -15,3 +16,4 @@ src/templates/editor.html
 
 *.sqlite
 
+src/static/node-create/js/generated/main.js
