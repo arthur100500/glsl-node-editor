@@ -5,7 +5,7 @@ changedSucc = () => $.notify("Changed successfully, refresh the page", "success"
     className: "save-note"
 });
 
-function changeTextureImage(obj) {
+const changeTextureImage = (obj) => {
     let myFormData = new FormData();
     myFormData.append('file', obj.files[0]);
 
@@ -14,8 +14,8 @@ function changeTextureImage(obj) {
         dataType: false,
         url: obj.attributes.addr.value,
         data: myFormData,
-        processData: false, // important
-        contentType: false, // important,
+        processData: false,
+        contentType: false,
         success: function (response) {
             if (!(response === "success")) {
                 console.log(response);

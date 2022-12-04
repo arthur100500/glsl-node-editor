@@ -5,6 +5,7 @@ This is a main module for GLSL Node Editor.
 import base64
 
 from flask import Flask, render_template, redirect, request, send_file, Response
+from flask_assets import Bundle, Environment
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
 from forms.login_form import LoginForm
@@ -24,9 +25,41 @@ app.config['MAX_CONTENT_PATH'] = 1024 * 1024 * 8
 
 db_session.global_init("users.sqlite")
 
-
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+
+editor_bundle = Bundle(
+    'editor/js/elements/elements.js',
+    'editor/js/editor/editor.js',
+    'editor/js/nodes/colors.js',
+    'editor/js/nodes/headerbg.js',
+    'editor/js/nodes/node.js',
+    'editor/js/nodes/rectbg.js',
+    'editor/js/nodes/nodeinput.js',
+    'editor/js/nodes/nodeoutput.js',
+    'editor/js/nodes/nodeparameter.js',
+    'editor/js/nodes/nodefactory.js',
+    'editor/js/ajax/save.js',
+    'editor/js/ajax/texturechange.js',
+    'editor/js/assemble/assemble.js',
+    'editor/js/connectable/connectable.js',
+    'editor/js/contextmenu/contextmenu.js',
+    'editor/js/debugger/textures.js',
+    'editor/js/debugger/debugger.js',
+    'editor/js/defaultnodes/defaultnodes.js',
+    'editor/js/draggable/draggable.js',
+    'editor/js/graphics/bezierconnector.js',
+    'editor/js/graphics/redrawer.js',
+    'editor/js/loader/projectloader.js',
+    'editor/js/zoom/zoom.js',
+    'editor/js/resize/resize.js',
+    output='editor/js/generated/main.js'
+)
+
+assets = Environment(app)
+assets.register('editor_js', editor_bundle)
+
 
 
 @app.route('/pimg/<proj_id>/<tex_id>/')

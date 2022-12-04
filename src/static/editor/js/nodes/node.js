@@ -1,9 +1,11 @@
 class Node {
+    static latestNodeID = 0;
+    
     constructor(functional = true) {
         // Logic
         this.name = "New node";
         this.code = "";
-        this.id = latestNodeID++;
+        this.id = Node.latestNodeID++;
         this.inputs = []
         this.output = new NodeOutput(this, "bool", "not_done", 0);
         this.additionElements = [];
@@ -128,16 +130,16 @@ class Node {
             }
         }
 
-        for (let i = 0; i < allNodes.length; i++) {
-            for (let j = 0; j < allNodes[i].inputs.length; j++) {
-                if (allNodes[i].inputs[j].connectedSource === this.output) {
-                    allNodes[i].inputs[j].connectedSource = null;
-                    mainEditorDiv.removeChild(allNodes[i].inputs[j].connectedSourceVisualConnection.connectorContainer);
+        for (let i = 0; i < Editor.allNodes.length; i++) {
+            for (let j = 0; j < Editor.allNodes[i].inputs.length; j++) {
+                if (Editor.allNodes[i].inputs[j].connectedSource === this.output) {
+                    Editor.allNodes[i].inputs[j].connectedSource = null;
+                    mainEditorDiv.removeChild(Editor.allNodes[i].inputs[j].connectedSourceVisualConnection.connectorContainer);
                 }
             }
         }
 
-        allNodes.splice(allNodes.indexOf(this), 1);
+        Editor.allNodes.splice(Editor.allNodes.indexOf(this), 1);
     }
 
     toJson() {

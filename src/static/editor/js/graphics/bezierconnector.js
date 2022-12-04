@@ -1,3 +1,5 @@
+const strokeWidth = 5;
+
 class BezierConnector {
     static latestConnectorID = 0;
 
@@ -24,7 +26,7 @@ class BezierConnector {
     }
 
     genBesierCode() {
-        const strokeWidth = 5;
+
         let nx0 = this.x0 - Math.min(this.x0, this.x1);
         let nx1 = this.x1 - Math.min(this.x0, this.x1);
         let ny0 = this.y0 - Math.min(this.y0, this.y1);
