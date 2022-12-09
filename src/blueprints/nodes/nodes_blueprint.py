@@ -1,13 +1,9 @@
-import base64
-
-from flask import Blueprint, Response, request, redirect, render_template
+from flask import Blueprint, Response, redirect, render_template
 
 from flask_login import current_user, login_required
 
 from db import db_session
-from db.models.user_model import UserModel as User
 from db.models.nodes_model import NodeModel as Node
-from db.models.project_model import ProjectModel as Project
 
 from template_projects.template_projects import NODE_TEMPLATE
 

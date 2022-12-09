@@ -1,7 +1,6 @@
-from flask import Blueprint, Response, request, render_template, redirect
+from flask import Blueprint, Response, render_template, redirect
 
 from flask_login import (
-    current_user,
     login_required,
     login_manager,
     logout_user,
@@ -11,8 +10,6 @@ from flask_login import (
 
 from db import db_session
 from db.models.user_model import UserModel as User
-from db.models.nodes_model import NodeModel as Node
-from db.models.project_model import ProjectModel as Project
 
 from forms.login_form import LoginForm
 from forms.register_form import RegisterForm

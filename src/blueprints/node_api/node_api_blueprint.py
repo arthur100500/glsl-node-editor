@@ -5,7 +5,6 @@ from flask_login import current_user, login_required
 from db import db_session
 from db.models.user_model import UserModel as User
 from db.models.nodes_model import NodeModel as Node
-from db.models.project_model import ProjectModel as Project
 
 
 node_api_bp = Blueprint(

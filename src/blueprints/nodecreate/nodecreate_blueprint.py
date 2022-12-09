@@ -1,13 +1,7 @@
-import base64
-
-from flask import Blueprint, Response, render_template
-
-from flask_login import current_user
+from flask import Blueprint, render_template
 
 from db import db_session
-from db.models.user_model import UserModel as User
 from db.models.nodes_model import NodeModel as Node
-from db.models.project_model import ProjectModel as Project
 
 
 nodecreate_bp = Blueprint(

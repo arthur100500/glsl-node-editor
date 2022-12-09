@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from db import db_session
 from db.models.project_model import ProjectModel as Project
 
-from template_projects.template_projects import NODE_TEMPLATE, PROJECT_TEMPLATE
+from template_projects.template_projects import PROJECT_TEMPLATE
 
 projects_bp = Blueprint(
     "projects", __name__, template_folder="templates", static_folder="static"
