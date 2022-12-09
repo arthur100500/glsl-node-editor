@@ -1,4 +1,3 @@
-from flask import current_app
 from flask_assets import Bundle
 
 
