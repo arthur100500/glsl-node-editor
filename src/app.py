@@ -2,26 +2,11 @@
 This is a main module for GLSL Node Editor.
 """
 
-import base64
-
-from flask import Flask, render_template, redirect, request, send_file, Response
-from flask_login import (
-    LoginManager,
-    login_user,
-    login_required,
-    logout_user,
-    current_user,
-)
-
-from forms.login_form import LoginForm
-from forms.register_form import RegisterForm
+from flask import Flask
 
 from flask_assets import Environment
 
 from db import db_session
-from db.models.user_model import UserModel as User
-from db.models.nodes_model import NodeModel as Node
-from db.models.project_model import ProjectModel as Project
 
 from blueprints.editor.editor_blueprint import editor_bp
 from blueprints.explore.explore_blueprint import explore_bp
