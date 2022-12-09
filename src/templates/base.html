@@ -35,6 +35,8 @@
 <div class="onepxvoid"></div>
 <div class="main-content">
     {% block content %} {% endblock %}
+</div>
+{% if not no_footer %}
 <footer>
     <div class="ftr">
         <span>GLSL Node Editor</span>
@@ -42,7 +44,7 @@
         <span style="text-align: end"><a href="https://github.com/arthur100500/glsl-node-editor">Project on GitHub</a></span>
     </div>
 </footer>
-</div>
+{% endif %}
 </div>
 </body>
 </html>
