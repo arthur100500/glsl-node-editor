@@ -16,3 +16,9 @@ src/node_modules/*
 
 src/static/node-create/js/generated/main.js
 src/static/editor/js/generated/main.js
+
+src/.eslintrc.json
+src/.stylelintrc.json
+
+src/.vscode/settings.json
+src/.vscode
