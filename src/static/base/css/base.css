@@ -3,6 +3,8 @@ body {
   line-height: 1;
   position: relative;
   background-color: #202020;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar {
@@ -24,7 +26,6 @@ body {
   height: 60px;
   box-shadow: 0 1px 0 rgb(255 255 255 / 20%);
   z-index: 11;
-  position: absolute;
   width: 100%;
   background-color: #282828;
 }
@@ -44,9 +45,8 @@ body {
 }
 
 .main-content {
-  top: 60px;
   position: relative;
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 150px);
 }
 
 a {
@@ -82,6 +82,7 @@ a:not([href]):hover {
   box-sizing: inherit;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  flex-shrink: 0;
 }
 
 .ftr span {
