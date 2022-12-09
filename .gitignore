@@ -11,8 +11,6 @@ src/data/db/*
 src/data/texture_imgs/*
 
 src/node_modules/*
-src/static/editor/css/styles.css
-src/templates/editor.html
 
 *.sqlite
 
