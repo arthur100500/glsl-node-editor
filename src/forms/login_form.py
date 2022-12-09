@@ -7,8 +7,9 @@ from wtforms.fields import EmailField
 
 
 class LoginForm(FlaskForm):
-    """ Form for login """
-    email = EmailField('E-mail', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember me')
-    submit = SubmitField('Enter')
+    """Form for login"""
+
+    email = EmailField("E-mail", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    remember_me = BooleanField("Remember me")
+    submit = SubmitField("Enter")
