@@ -7,9 +7,10 @@ from wtforms.fields import EmailField
 
 
 class RegisterForm(FlaskForm):
-    """ Form for register """
-    email = EmailField('E-mail', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    password_again = PasswordField('Repeat password', validators=[DataRequired()])
-    name = StringField('Nickname', validators=[DataRequired(), Length(1, 15)])
-    submit = SubmitField('Register')
+    """Form for register"""
+
+    email = EmailField("E-mail", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    password_again = PasswordField("Repeat password", validators=[DataRequired()])
+    name = StringField("Nickname", validators=[DataRequired(), Length(1, 15)])
+    submit = SubmitField("Register")

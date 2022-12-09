@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <link rel="stylesheet" href="/static/editor/css/styles.css">
+    <script src='https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js'></script>
+    
+
+    <div class="page-layout" id="page-layout">
+        <div class="pr-data-container">
+            <div class="compile-canvas-container">
+                <canvas id="gl-canvas">Your browser does not seem to support HTML5 canvas.</canvas>
+            </div>
+            <div class="pr-name-container">
+                <hr>
+                <span contenteditable class="pr-name">{{ project.name }}</span>
+                <br>
+                <span contenteditable class="pr-desc">{{ project.description }}</span>
+                <br>
+                <span class="pr-auth-lbl"> Made by: </span><span class="pr-auth"><b>{{ author.name }}</b></span>
+                <hr>
+                <h3>Change textures used:</h3>
+                <div class="texture-upload-c">
+                {% for i in range(8)%} 
+                <div class="texture-img-preview">
+                    <img class="texture-img-img" src="/pimg/{{project.id}}/{{i}}">
+                    <label for="texture-upload-{{i}}" class="texture-upload">
+                        Change texture {{i}}
+                    </label>
+                </div>
+                     <input style="display: none;" id="texture-upload-{{i}}" name="file" addr="/uploader/{{ project.id }}/{{ i }}/" type="file" onchange="changeTextureImage(this);">
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="resizer" id="dragger"></div>
+        <div class="node-editor" id="node-editor">
+            <div class="main-div" id="main-editor"></div>
+        </div>
+    </div>
+
+    <meta id="project-id" data-project-id="{{ project.id }}">
+    <meta id="json-code" data-json-code="{{ project.json_code }}">
+    {% for used_node in used_nodes %}
+        <meta class="used-nodes" data-used-node="{{ used_node }}">
+    {% endfor %}
+    <div id="control-panel">
+        <button class="control-btn" id="compile-button"><i class="arrow arrow-right-compile"></i>Compile</button>
+        <button class="control-btn" id="save-as-project-button">Save Project</button>
+        <button class="control-btn" id="save-as-shader-button">Save as shader</button>
+        <button class="control-btn" id="sort-button">Sort nodes</button>
+
+    </div>
+    <div class="node-creator-buttons">
+        <button class="control-btn" id="create-node-confirm">Create</button>
+        <button class="control-btn" id="exit-node-creator">Close</button>
+    </div>
+    </div>
+
+    <div id="context-menu">
+        <div class="item" id="new-node-btn">Place New node</div>
+        <div id="node-list-div"></div>
+    </div>
+
+    {% assets "editor_js"%}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+
+{% endblock %}
+

@@ -9,8 +9,9 @@ SqlAlchemyBase = dec.declarative_base()
 
 FACTORY = None
 
+
 def global_init(db_file: str) -> None:
-    """ Init database connection """
+    """Init database connection"""
     global FACTORY
 
     if FACTORY:
@@ -19,7 +20,7 @@ def global_init(db_file: str) -> None:
     if not db_file or not db_file.strip():
         raise Exception("Необходимо указать файл базы данных.")
 
-    conn_str = f'sqlite:///{db_file.strip()}?check_same_thread=False&charset=utf8'
+    conn_str = f"sqlite:///{db_file.strip()}?check_same_thread=False&charset=utf8"
     print(f"Подключение к базе данных по адресу {conn_str}")
 
     engine = sa.create_engine(conn_str, echo=False)
@@ -29,6 +30,6 @@ def global_init(db_file: str) -> None:
 
 
 def create_session() -> Session:
-    """ Get session """
+    """Get session"""
     global FACTORY
     return FACTORY()
