@@ -72,7 +72,6 @@ def login() -> str:
 
     return render_template(
         "login.html",
-        title="Log in/Register",
         login_form=login_form,
         register_form=register_form,
         login_message=login_message,
