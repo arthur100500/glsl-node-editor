@@ -5,12 +5,14 @@ const savenotify = () => $.notify("Saved code", "success", {
     className: "save-note"
 });
 
+
 const errornotify = (msg) => $.notify(msg, "error", {
     clickToHide: true,
     autoHide: true,
     autoHideDelay: 1000,
     className: "save-note"
 });
+
 
 savePrButton.onmousedown = function () {
     let code = "";
@@ -48,10 +50,10 @@ savePrButton.onmousedown = function () {
         dataType: 'data',
         url: '/set_img/' + pid,
         data: { img: glCanvas.toDataURL() },
-        success: function (response) {
+        success: function (_) {
 
         },
-        error: function (err) {
+        error: function (_) {
 
         }
     });
