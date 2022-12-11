@@ -13,7 +13,7 @@
             <div class="node-c">
             <div class="node" onclick="document.location = '/node/{{ node.id }}'">
                 <div class="node-data">
-                    <span> <b>{{ node.name }}</b> by {{ node.user.name }}</span>
+                    <span> <b>{{ node.name }}</b> by {{ node.author }}</span>
                 </div>
             </div>
             {% if (node.id|string) in (current_user.used_nodes|string) %}

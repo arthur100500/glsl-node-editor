@@ -2,7 +2,7 @@ from flask import Blueprint, Response, render_template, redirect
 
 from flask_login import current_user, login_required
 
-from db import db_session
+from db import db
 from db.models.project_model import ProjectModel as Project
 
 from template_projects.template_projects import PROJECT_TEMPLATE
@@ -16,7 +16,7 @@ projects_bp = Blueprint(
 @login_required
 def new_project() -> Response:
     """Create new project and redirect to the editor"""
-    session = db_session.create_session()
+    session = db.get_session()
     proj = Project(
         name="New project",
         description="A brand new project",
@@ -33,6 +33,6 @@ def new_project() -> Response:
 @login_required
 def projects_page() -> str:
     """Project list"""
-    session = db_session.create_session()
+    session = db.get_session()
     projects = session.query(Project).filter(Project.user_id == current_user.id)
     return render_template("projects.html", projects=projects)

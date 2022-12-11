@@ -1,12 +1,13 @@
 """
 This is a main module for GLSL Node Editor.
 """
+import sys
 
 from flask import Flask
 
 from flask_assets import Environment
 
-from db import db_session
+from db.db import init, create_db
 
 from blueprints.editor.editor_blueprint import editor_bp
 from blueprints.explore.explore_blueprint import explore_bp
@@ -21,6 +22,8 @@ from blueprints.textures.textures_blueprint import textures_bp
 
 from blueprints.login.login_blueprint import login_manager
 
+from app_config import DATABASE_NAME
+
 from assets import assets
 
 app = Flask(__name__, static_url_path="/static", template_folder="templates")
@@ -28,7 +31,9 @@ app.secret_key = "NAMRsB7fTe7hnLOK38CJNYFSjWJyshioFYhsugMotfH39Y126Q36UduqPagu7H
 app.config["UPLOAD_FOLDER"] = "upload"
 app.config["MAX_CONTENT_PATH"] = 1024 * 1024 * 8
 
-db_session.global_init("users.sqlite")
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + DATABASE_NAME
+init(app)
 
 app_env = Environment(app)
 login_manager.init_app(app)
@@ -50,4 +55,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "init":
+            with app.app_context():
+                create_db()
+    else:
+        main()
