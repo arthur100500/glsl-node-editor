@@ -12,6 +12,7 @@ class NodeModel(db.Model):
     json_code = db.Column(db.String, nullable=True)
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     author = db.Column(db.String)
+    owner_id = db.Column(db.Integer)
 
     name = db.Column(db.String, nullable=True)
     description = db.Column(db.String, nullable=True)

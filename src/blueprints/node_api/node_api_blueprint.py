@@ -28,7 +28,6 @@ def add_node(node_id: str) -> str:
     """Add node by ID to the current user, to use in the editor later"""
     session = db.get_session()
     node = session.query(Node).filter(Node.id == int(node_id)).first()
-    print(current_user.used_nodes)
     if not node:
         return Response(status=404)
 
@@ -59,7 +58,7 @@ def save_node() -> Response:
     session = db.get_session()
     node = session.query(Node).filter(Node.id == int(request.form["id"])).first()
 
-    if node.author_id != current_user.id:
+    if node.owner_id != current_user.id:
         return Response(status=403)
 
     node.name = request.form["name"]

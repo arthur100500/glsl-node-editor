@@ -1,5 +1,4 @@
 function changeStyle(t) {
-    console.log(t)
     if (t.className === "used") {
         t.className = "unused";
         t.innerHTML = "<span> Use </span>";

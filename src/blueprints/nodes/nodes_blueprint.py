@@ -22,6 +22,7 @@ def new_node() -> Response:
         json_code=NODE_TEMPLATE,
         description="A brand new node",
         author_id=current_user.id,
+        owner_id=current_user.id,
         author=current_user.name,
     )
     session.add(node)
