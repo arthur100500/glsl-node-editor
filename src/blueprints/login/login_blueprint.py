@@ -1,4 +1,4 @@
-from flask import Blueprint, Response, render_template, redirect
+from flask import Blueprint, Response, render_template, redirect, flash
 
 from flask_login import (
     login_required,
@@ -41,16 +41,14 @@ def login() -> str:
     """Login page"""
     login_form = LoginForm()
     register_form = RegisterForm()
-    login_message = ""
-    register_message = ""
 
     if login_form.validate_on_submit():
         session = db.get_session()
         user = session.query(User).filter(User.email == login_form.email.data).first()
         if user is None:
-            login_message = "This user does not exist"
+            flash("This user does not exist", "Login")
         elif not user.check_password(login_form.password.data):
-            login_message = "Incorrect password"
+            flash("Incorrect password", "Login")
         if user and user.check_password(login_form.password.data):
             login_user(user, remember=login_form.remember_me.data)
             return redirect("/")
@@ -58,11 +56,11 @@ def login() -> str:
     if register_form.validate_on_submit():
         session = db.get_session()
         if register_form.password.data != register_form.password_again.data:
-            register_message = "Passwords are not the same"
+            flash("Passwords are not the same", "Register")
         elif session.query(User).filter(User.email == register_form.email.data).first():
-            register_message = "This email is already registered"
+            flash("This email is already registered", "Register")
         elif session.query(User).filter(User.name == register_form.name.data).first():
-            register_message = "This nickname is already taken"
+            flash("This nickname is already taken", "Register")
         else:
             user = User(name=register_form.name.data, email=register_form.email.data)
             user.set_password(register_form.password.data)
@@ -72,9 +70,6 @@ def login() -> str:
 
     return render_template(
         "login.html",
-        title="Log in/Register",
         login_form=login_form,
         register_form=register_form,
-        login_message=login_message,
-        register_message=register_message,
     )

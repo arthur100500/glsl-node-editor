@@ -27,7 +27,6 @@ def editor_page(proj_id: str) -> str:
     author = session.query(User).filter(User.id == project.user_id).first()
     used_nodes_codes = []
     if current_user.is_authenticated:
-
         for node in current_user.used_nodes:
             used_nodes_codes.append(node.json_code)
 

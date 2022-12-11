@@ -17,11 +17,8 @@ def get_proj_text_file(proj_id: str, tex_id: str) -> Response:
     session = db.get_session()
     project = session.query(Project).filter(Project.id == int(proj_id)).first()
 
-    if project.user_id != current_user.id:
-        return "Project is not yours"
-
     if not 0 <= int(tex_id) <= 7:
-        return "Texture should be from 0 to 7"
+        return Response("Texture should be from 0 to 7", status=500)
 
     filename = "noimage.png"
     if int(tex_id) <= 4:
@@ -56,10 +53,10 @@ def upload_file(proj_id: str, tex_id: str) -> str:
         session = db.get_session()
 
         if not proj_id.isnumeric() or not tex_id.isnumeric():
-            return "Project ID or Texture ID is not numeric"
+            return Response("Project ID or Texture ID is not numeric", status=500)
 
         if not 0 <= int(tex_id) <= 7:
-            return "Texture should be from 0 to 7"
+            return Response("Texture should be from 0 to 7", status=500)
 
         project = session.query(Project).filter(Project.id == int(proj_id)).first()
 
@@ -68,7 +65,7 @@ def upload_file(proj_id: str, tex_id: str) -> str:
         fname = f"p{proj_id}s{tex_id}.{ext}"
 
         if project.user_id != current_user.id:
-            return "Project is not yours"
+            return Response("Project is not yours", status=403)
 
         if int(tex_id) == 0:
             project.texture0_img = fname
@@ -91,5 +88,5 @@ def upload_file(proj_id: str, tex_id: str) -> str:
         session.commit()
 
         file.save(f"data/texture_imgs/{fname}")
-        return "success"
-    return "post method is allowed here"
+        return Response("success", status=200)
+    return Response("post method is allowed here", status=405)
