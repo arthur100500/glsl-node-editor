@@ -32,7 +32,7 @@ savePrButton.onmousedown = function () {
         data: { name: pname, desc: pdesc, json_code: code, id: pid },
         success: function (response) {
             if (!(response === "success")) {
-                errornotify(response);
+        errornotify(response);
             }
             else
                 savenotify();
