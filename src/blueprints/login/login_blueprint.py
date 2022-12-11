@@ -8,7 +8,7 @@ from flask_login import (
     LoginManager,
 )
 
-from db import db_session
+from db import db
 from db.models.user_model import UserModel as User
 
 from forms.login_form import LoginForm
@@ -24,7 +24,7 @@ login_manager = LoginManager()
 @login_manager.user_loader
 def load_user(user_id: int) -> User:
     """Load user"""
-    session = db_session.create_session()
+    session = db.get_session()
     return session.query(User).get(user_id)
 
 
@@ -45,7 +45,7 @@ def login() -> str:
     register_message = ""
 
     if login_form.validate_on_submit():
-        session = db_session.create_session()
+        session = db.get_session()
         user = session.query(User).filter(User.email == login_form.email.data).first()
         if user is None:
             login_message = "This user does not exist"
@@ -56,7 +56,7 @@ def login() -> str:
             return redirect("/")
 
     if register_form.validate_on_submit():
-        session = db_session.create_session()
+        session = db.get_session()
         if register_form.password.data != register_form.password_again.data:
             register_message = "Passwords are not the same"
         elif session.query(User).filter(User.email == register_form.email.data).first():

@@ -4,7 +4,7 @@ from flask import Blueprint, request
 
 from flask_login import current_user
 
-from db import db_session
+from db import db
 from db.models.project_model import ProjectModel as Project
 
 
@@ -16,7 +16,7 @@ previews_bp = Blueprint(
 @previews_bp.route("/set_img/<proj_id>", methods=["POST"])
 def set_img(proj_id: str) -> str:
     """Set the preview image of a project"""
-    session = db_session.create_session()
+    session = db.get_session()
     project = session.query(Project).filter(Project.id == int(proj_id)).first()
     if not project:
         return "no project with id"

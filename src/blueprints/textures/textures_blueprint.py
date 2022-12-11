@@ -2,7 +2,7 @@ from flask import Blueprint, Response, send_file, request
 
 from flask_login import current_user
 
-from db import db_session
+from db import db
 from db.models.project_model import ProjectModel as Project
 
 
@@ -14,7 +14,7 @@ textures_bp = Blueprint(
 @textures_bp.route("/pimg/<proj_id>/<tex_id>/")
 def get_proj_text_file(proj_id: str, tex_id: str) -> Response:
     """Get the texture image for project and texture unit"""
-    session = db_session.create_session()
+    session = db.get_session()
     project = session.query(Project).filter(Project.id == int(proj_id)).first()
 
     if project.user_id != current_user.id:
@@ -53,7 +53,7 @@ def upload_file(proj_id: str, tex_id: str) -> str:
     if request.method == "POST":
         proj_id, tex_id = str(proj_id), str(tex_id)
 
-        session = db_session.create_session()
+        session = db.get_session()
 
         if not proj_id.isnumeric() or not tex_id.isnumeric():
             return "Project ID or Texture ID is not numeric"

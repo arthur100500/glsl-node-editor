@@ -1,27 +1,36 @@
 """ Module for user model class """
 
-import sqlalchemy
 import datetime
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from db.db_session import SqlAlchemyBase, orm
+from db.db import db
 
 
-class UserModel(SqlAlchemyBase, UserMixin):
+association_table = db.Table(
+    "association",
+    db.Model.metadata,
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("node_id", db.Integer, db.ForeignKey("nodes.id")),
+)
+
+
+class UserModel(db.Model, UserMixin):
     """User model"""
 
     __tablename__ = "users"
-    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
-    name = sqlalchemy.Column(sqlalchemy.String(15), unique=True)
-    email = sqlalchemy.Column(sqlalchemy.String, unique=True)
-    hashed_password = sqlalchemy.Column(sqlalchemy.String)
-    create_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
-    # As I understand arrays are only supported in PostgreSQL
-    used_nodes = sqlalchemy.Column(sqlalchemy.String, default="")
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(15), unique=True)
+    email = db.Column(db.String, unique=True)
+    hashed_password = db.Column(db.String)
+    create_date = db.Column(db.DateTime, default=datetime.datetime.now)
 
-    nodes = orm.relation("NodeModel", back_populates="user")
-    projects = orm.relation("ProjectModel", back_populates="user")
+    used_nodes = db.relationship(
+        "NodeModel", secondary=association_table, back_populates="user"
+    )
+
+    nodes = db.relationship("NodeModel", back_populates="user")
+    projects = db.relationship("ProjectModel", back_populates="user")
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
