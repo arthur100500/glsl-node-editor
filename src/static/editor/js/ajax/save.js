@@ -5,6 +5,13 @@ const savenotify = () => $.notify("Saved code", "success", {
     className: "save-note"
 });
 
+const errornotify = (msg) => $.notify(msg, "error", {
+    clickToHide: true,
+    autoHide: true,
+    autoHideDelay: 1000,
+    className: "save-note"
+});
+
 savePrButton.onmousedown = function () {
     let code = "";
     for (let i = 0; i < Editor.allNodes.length; i++)
@@ -23,11 +30,16 @@ savePrButton.onmousedown = function () {
         data: { name: pname, desc: pdesc, json_code: code, id: pid },
         success: function (response) {
             if (!(response === "success")) {
-                console.log(response);
+                errornotify(response);
             }
+            else
+                savenotify();
         },
-        error: function (error) {
-            console.log(error);
+        error: function (err) {
+            if (err.responseText === "success")
+                savenotify();
+            else
+                errornotify(err.responseText);
         }
     });
 
@@ -37,15 +49,10 @@ savePrButton.onmousedown = function () {
         url: '/set_img/' + pid,
         data: { img: glCanvas.toDataURL() },
         success: function (response) {
-            if (!(response === "success")) {
-                console.log(response);
-            }
-            else
-                savenotify();
+
         },
-        error: function (error) {
-            if (error.status === 200)
-                savenotify();
+        error: function (err) {
+
         }
     });
 }

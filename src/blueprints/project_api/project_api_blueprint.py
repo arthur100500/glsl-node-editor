@@ -18,11 +18,11 @@ def save_project() -> Response:
     proj = session.query(Project).filter(Project.id == int(request.form["id"])).first()
 
     if proj.user_id != current_user.id:
-        return "It is not your project"
+        return Response("The project is not yours", status=403)
 
     proj.name = request.form["name"]
     proj.json_code = request.form["json_code"]
     proj.description = request.form["desc"]
     session.add(proj)
     session.commit()
-    return "success"
+    return Response("success", status=200)
