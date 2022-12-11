@@ -37,7 +37,7 @@ savePrButton.onmousedown = function () {
             else
                 savenotify();
         },
-        error: function (err) {
+    error: function (err) {
             if (err.responseText === "success")
                 savenotify();
             else
