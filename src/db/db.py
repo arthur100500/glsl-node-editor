@@ -24,7 +24,7 @@ def init(app):
     db.init_app(app)
 
 
-def create_session():
+def get_session():
     return db.session
 
 

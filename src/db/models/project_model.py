@@ -1,7 +1,7 @@
 """ Module for project model class """
 
 
-from db.db_session import db
+from db.db import db
 from template_projects.template_projects import PROJECT_TEMPLATE
 
 

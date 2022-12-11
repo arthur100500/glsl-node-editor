@@ -1,6 +1,6 @@
 """ Module for node model class """
 
-from db.db_session import db
+from db.db import db
 
 
 class NodeModel(db.Model):
@@ -12,7 +12,7 @@ class NodeModel(db.Model):
     json_code = db.Column(db.String, nullable=True)
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     author = db.Column(db.String)
-    
+
     name = db.Column(db.String, nullable=True)
     description = db.Column(db.String, nullable=True)
 

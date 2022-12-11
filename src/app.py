@@ -7,7 +7,7 @@ from flask import Flask
 
 from flask_assets import Environment
 
-from db.db_session import init, create_db
+from db.db import init, create_db
 
 from blueprints.editor.editor_blueprint import editor_bp
 from blueprints.explore.explore_blueprint import explore_bp

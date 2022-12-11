@@ -2,7 +2,7 @@ from flask import Blueprint, Response, redirect, render_template
 
 from flask_login import current_user, login_required
 
-from db import db_session
+from db import db
 from db.models.nodes_model import NodeModel as Node
 
 from template_projects.template_projects import NODE_TEMPLATE
@@ -16,7 +16,7 @@ nodes_blueprint = Blueprint(
 @login_required
 def new_node() -> Response:
     """Create node and redirect to the editor"""
-    session = db_session.create_session()
+    session = db.get_session()
     node = Node(
         name="New node",
         json_code=NODE_TEMPLATE,
@@ -33,6 +33,6 @@ def new_node() -> Response:
 @login_required
 def nodes_page() -> str:
     """Node list"""
-    session = db_session.create_session()
+    session = db.get_session()
     nodes = session.query(Node).filter(Node.author_id == current_user.id)
     return render_template("nodes.html", nodes=nodes)
