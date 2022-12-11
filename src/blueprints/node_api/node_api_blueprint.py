@@ -3,8 +3,8 @@ from flask import Blueprint, Response, request
 from flask_login import current_user, login_required
 
 from db import db_session
-from db.models.user_model import UserModel as User
 from db.models.nodes_model import NodeModel as Node
+from db.models.user_model import UserModel as User
 
 
 node_api_bp = Blueprint(
@@ -29,16 +29,12 @@ def add_node(node_id: str) -> str:
     """Add node by ID to the current user, to use in the editor later"""
     session = db_session.create_session()
     node = session.query(Node).filter(Node.id == int(node_id)).first()
+    print(current_user.used_nodes)
     if not node:
         return "no node with id"
 
-    current_user_selected = (
-        session.query(User).filter(User.id == current_user.id).first()
-    )
-    used_nodes_set = set(str(current_user_selected.used_nodes).split())
-    used_nodes_set.add(node_id)
-    current_user_selected.used_nodes = " ".join(list(used_nodes_set))
-    session.add(current_user_selected)
+    current_user.used_nodes.append(node)
+    session.add(current_user)
     session.commit()
     return "success"
 
@@ -52,13 +48,8 @@ def rem_node(node_id: str) -> str:
     if not node:
         return "no node with id"
 
-    current_user_selected = (
-        session.query(User).filter(User.id == current_user.id).first()
-    )
-    used_nodes_set = set(str(current_user_selected.used_nodes).split())
-    used_nodes_set.remove(node_id)
-    current_user_selected.used_nodes = " ".join(list(used_nodes_set))
-    session.add(current_user_selected)
+    current_user.used_nodes.remove(node)
+    session.add(current_user)
     session.commit()
     return "success"
 

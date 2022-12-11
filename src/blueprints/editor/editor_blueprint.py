@@ -27,13 +27,10 @@ def editor_page(proj_id: str) -> str:
     author = session.query(User).filter(User.id == project.user_id).first()
     used_nodes_codes = []
     if current_user.is_authenticated:
-        current_user_selected = (
-            session.query(User).filter(User.id == current_user.id).first()
-        )
-        used_nodes_ids = str(current_user_selected.used_nodes).split()
-        for node_id in used_nodes_ids:
+
+        for node in current_user.used_nodes:
             used_nodes_codes.append(
-                session.query(Node).filter(Node.id == node_id).first().json_code
+                node.json_code
             )
 
     return render_template(

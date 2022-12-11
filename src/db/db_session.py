@@ -1,35 +1,40 @@
-""" Module that provides session methods """
+""" Module for database creation """
+import shutil
+from pathlib import Path
 
-import sqlalchemy as sa
-from sqlalchemy import orm
-from sqlalchemy.orm import Session
-import sqlalchemy.ext.declarative as dec
+from sqlalchemy import MetaData
+from flask_sqlalchemy import SQLAlchemy
 
-SqlAlchemyBase = dec.declarative_base()
+from app_config import DATABASE_NAME, DATABASE_BACKUP_NAME
 
-FACTORY = None
+convention = {
+    "ix": 'ix_%(column_0_label)s',
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s"
+}
 
-
-def global_init(db_file: str) -> None:
-    """Init database connection"""
-    global FACTORY
-
-    if FACTORY:
-        return
-
-    if not db_file or not db_file.strip():
-        raise Exception("Необходимо указать файл базы данных.")
-
-    conn_str = f"sqlite:///{db_file.strip()}?check_same_thread=False&charset=utf8"
-    print(f"Подключение к базе данных по адресу {conn_str}")
-
-    engine = sa.create_engine(conn_str, echo=False)
-    FACTORY = orm.sessionmaker(bind=engine)
-
-    SqlAlchemyBase.metadata.create_all(engine)
+metadata = MetaData(naming_convention=convention)
+db = SQLAlchemy(metadata=metadata)
 
 
-def create_session() -> Session:
-    """Get session"""
-    global FACTORY
-    return FACTORY()
+def init(app):
+    db.app = app
+    db.init_app(app)
+
+
+def create_session():
+    return db.session
+
+
+def create_db():
+    # Check if db file already exists. If so, backup it
+    db_file = Path(DATABASE_NAME)
+    if db_file.is_file():
+        shutil.copyfile(DATABASE_NAME, DATABASE_BACKUP_NAME)
+
+    # Init DB
+    db.session.commit()
+    db.drop_all()
+    db.create_all()

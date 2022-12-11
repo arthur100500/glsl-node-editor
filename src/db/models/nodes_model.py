@@ -1,19 +1,19 @@
 """ Module for node model class """
 
-import sqlalchemy
-from db.db_session import SqlAlchemyBase, orm
+from db.db_session import db
 
 
-class NodeModel(SqlAlchemyBase):
+class NodeModel(db.Model):
     """Node model"""
 
     __tablename__ = "nodes"
 
-    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
-    json_code = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    author_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"))
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    json_code = db.Column(db.String, nullable=True)
+    author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    author = db.Column(db.String)
+    
+    name = db.Column(db.String, nullable=True)
+    description = db.Column(db.String, nullable=True)
 
-    name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    description = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-
-    user = orm.relation("UserModel")
+    user = db.relationship("UserModel")
