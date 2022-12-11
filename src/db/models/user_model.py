@@ -7,9 +7,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from db.db import db
 
 
-association_table = db.Table('association', db.Model.metadata,
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
-    db.Column('node_id', db.Integer, db.ForeignKey('nodes.id'))
+association_table = db.Table(
+    "association",
+    db.Model.metadata,
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("node_id", db.Integer, db.ForeignKey("nodes.id")),
 )
 
 
@@ -23,7 +25,9 @@ class UserModel(db.Model, UserMixin):
     hashed_password = db.Column(db.String)
     create_date = db.Column(db.DateTime, default=datetime.datetime.now)
 
-    used_nodes = db.relationship("NodeModel", secondary=association_table, back_populates="user")
+    used_nodes = db.relationship(
+        "NodeModel", secondary=association_table, back_populates="user"
+    )
 
     nodes = db.relationship("NodeModel", back_populates="user")
     projects = db.relationship("ProjectModel", back_populates="user")

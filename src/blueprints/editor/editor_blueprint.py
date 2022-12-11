@@ -29,9 +29,7 @@ def editor_page(proj_id: str) -> str:
     if current_user.is_authenticated:
 
         for node in current_user.used_nodes:
-            used_nodes_codes.append(
-                node.json_code
-            )
+            used_nodes_codes.append(node.json_code)
 
     return render_template(
         "editor.html", project=project, author=author, used_nodes=used_nodes_codes

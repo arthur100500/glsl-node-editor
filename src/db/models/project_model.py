@@ -11,9 +11,7 @@ class ProjectModel(db.Model):
     __tablename__ = "projects"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    json_code = db.Column(
-        db.String, nullable=True, default=PROJECT_TEMPLATE
-    )
+    json_code = db.Column(db.String, nullable=True, default=PROJECT_TEMPLATE)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     name = db.Column(db.String)
     description = db.Column(db.String)

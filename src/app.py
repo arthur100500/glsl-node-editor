@@ -32,7 +32,7 @@ app.config["UPLOAD_FOLDER"] = "upload"
 app.config["MAX_CONTENT_PATH"] = 1024 * 1024 * 8
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + DATABASE_NAME
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + DATABASE_NAME
 init(app)
 
 app_env = Environment(app)
@@ -61,4 +61,3 @@ if __name__ == "__main__":
                 create_db()
     else:
         main()
-    
