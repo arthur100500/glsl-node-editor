@@ -51,13 +51,13 @@ def main():
     app.register_blueprint(projects_api_bp)
     app.register_blueprint(projects_bp)
     app.register_blueprint(textures_bp)
-    app.run()
+    if __name__ == "__main__":
+        app.run()
 
 
-if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        if sys.argv[1] == "init":
-            with app.app_context():
-                create_db()
-    else:
+if len(sys.argv) > 1:
+    if sys.argv[1] == "init":
+        with app.app_context():
+            create_db()
+    if sys.argv[1] == "run":
         main()
