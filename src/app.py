@@ -26,20 +26,21 @@ from app_config import DATABASE_NAME
 
 from assets import assets
 
-app = Flask(__name__, static_url_path="/static", template_folder="templates")
-app.secret_key = "NAMRsB7fTe7hnLOK38CJNYFSjWJyshioFYhsugMotfH39Y126Q36UduqPagu7HM5iulNm"
-app.config["UPLOAD_FOLDER"] = "upload"
-app.config["MAX_CONTENT_PATH"] = 1024 * 1024 * 8
 
+def create_app():
+    app = Flask(__name__, static_url_path="/static", template_folder="templates")
+    app.secret_key = (
+        "NAMRsB7fTe7hnLOK38CJNYFSjWJyshioFYhsugMotfH39Y126Q36UduqPagu7HM5iulNm"
+    )
+    app.config["UPLOAD_FOLDER"] = "upload"
+    app.config["MAX_CONTENT_PATH"] = 1024 * 1024 * 8
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + DATABASE_NAME
-init(app)
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + DATABASE_NAME
+    init(app)
 
-app_env = Environment(app)
-login_manager.init_app(app)
+    app_env = Environment(app)
+    login_manager.init_app(app)
 
-
-def main():
     assets.register_bundles(app_env)
     app.register_blueprint(editor_bp)
     app.register_blueprint(explore_bp)
@@ -51,13 +52,9 @@ def main():
     app.register_blueprint(projects_api_bp)
     app.register_blueprint(projects_bp)
     app.register_blueprint(textures_bp)
-    if __name__ == "__main__":
-        app.run()
 
+    return app
 
-if len(sys.argv) > 1:
-    if sys.argv[1] == "init":
-        with app.app_context():
-            create_db()
-    if sys.argv[1] == "run":
-        main()
+    # If db needs to be reloaded:
+    # with app.app_context():
+    #     create_db()
