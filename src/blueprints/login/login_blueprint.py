@@ -1,4 +1,4 @@
-from db import db
+from db.database import db
 from db.models.user_model import UserModel as User
 from flask import Blueprint, Response, render_template, redirect, flash
 from flask_login import (

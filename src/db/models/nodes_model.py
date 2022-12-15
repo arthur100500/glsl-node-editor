@@ -1,6 +1,6 @@
 """ Module for node model class """
 
-from db.db import db
+from db.database import db
 
 
 class NodeModel(db.Model):

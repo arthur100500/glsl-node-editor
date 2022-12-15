@@ -1,4 +1,4 @@
-from db import db
+from db.database import db
 from db.models.project_model import ProjectModel as Project
 from flask import Blueprint, Response, render_template, redirect
 from flask_login import current_user, login_required

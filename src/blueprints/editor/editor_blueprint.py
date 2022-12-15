@@ -1,4 +1,4 @@
-from db import db
+from db.database import db
 from db.models.project_model import ProjectModel as Project
 from db.models.user_model import UserModel as User
 from flask import render_template, Blueprint, Response

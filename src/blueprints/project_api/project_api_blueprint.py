@@ -1,4 +1,4 @@
-from db import db
+from db.database import db
 from db.models.project_model import ProjectModel as Project
 from flask import Blueprint, Response, request
 from flask_login import current_user
@@ -14,6 +14,9 @@ def save_project() -> Response:
     proj = db.session.query(Project).filter(Project.id == int(request.form["id"])).first()
     if not proj:
         return Response("Project does not exist", status=404)
+
+    if not current_user.is_authenticated:
+        return Response("You need to be logged in to save the project", status=403)
 
     if proj.user_id != current_user.id:
         return Response("The project is not yours", status=403)

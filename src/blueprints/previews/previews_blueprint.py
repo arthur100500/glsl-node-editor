@@ -1,6 +1,6 @@
 import base64
 
-from db import db
+from db.database import db
 from db.models.project_model import ProjectModel as Project
 from flask import Blueprint, request, Response
 from flask_login import current_user
@@ -23,6 +23,9 @@ def set_img(proj_id: int) -> Response:
     if not project:
         return Response("no project with id", status=404)
 
+    if not current_user.is_authenticated:
+        return Response(status=403)
+
     if project.user_id != current_user.id:
         return Response("project is not yours", status=403)
 
@@ -33,7 +36,7 @@ def set_img(proj_id: int) -> Response:
         with open(f"static/project_imgs/{proj_id}.png", "wb") as file:
             bts = request.form["img"].split(",")[1].encode("utf8")
             file.write(base64.decodebytes(bts))
-
+        
         project.img_src = f"{proj_id}.png"
         db.session.commit()
     except Exception:

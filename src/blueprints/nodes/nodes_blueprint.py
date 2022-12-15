@@ -1,4 +1,4 @@
-from db import db
+from db.database import db
 from db.models.nodes_model import NodeModel as Node
 from flask import Blueprint, Response, redirect, render_template
 from flask_login import current_user, login_required

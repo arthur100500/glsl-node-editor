@@ -1,4 +1,4 @@
-from db import db
+from db.database import db
 from db.models.nodes_model import NodeModel as Node
 from db.models.project_model import ProjectModel as Project
 from flask import render_template, Blueprint
