@@ -11,7 +11,7 @@ errornotify = (msg) => {
         autoHide: true,
         autoHideDelay: 1000,
         className: "save-note"
-    }); console.log(123);
+  });
 };
 
 saveBtn.onmousedown = function () {
