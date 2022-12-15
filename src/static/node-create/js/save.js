@@ -6,7 +6,7 @@ savenotify = () => $.notify("Saved code", "success", {
 });
 
 errornotify = (msg) => {
-    $.notify(msg, "error", {
+  $.notify(msg, "error", {
         clickToHide: true,
         autoHide: true,
         autoHideDelay: 1000,
