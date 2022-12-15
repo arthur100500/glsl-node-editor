@@ -2,6 +2,7 @@ from db.database import db
 from db.models.nodes_model import NodeModel as Node
 from flask import Blueprint, Response, redirect, render_template
 from flask_login import current_user, login_required
+from blueprints.node_api.node_api_blueprint import add_node
 from template_projects.template_projects import NODE_TEMPLATE
 
 nodes_blueprint = Blueprint(
@@ -21,6 +22,7 @@ def new_node() -> Response:
         owner_id=current_user.id,
         author=current_user.name,
     )
+    add_node(node.id)
     db.session.add(node)
     db.session.commit()
     return redirect("/node/" + str(node.id))

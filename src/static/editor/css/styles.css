@@ -192,6 +192,8 @@ body {
   transform-origin: top left;
   transition: transform 200ms ease-in-out;
   color: #aaa;
+  overflow-y: scroll;
+  max-height: 500px;
 }
 
 #context-menu.visible {

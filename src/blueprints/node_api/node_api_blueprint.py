@@ -8,11 +8,16 @@ node_api_bp = Blueprint(
 )
 
 
-@node_api_bp.route("/get_code/<node_id>")
+@node_api_bp.route("/get_code/<int:node_id>")
 @login_required
-def get_code(node_id: str) -> str:
-    """Get code for a node specified"""
-    node = db.session.query(Node).filter(Node.id == int(node_id)).first()
+def get_code(node_id: int) -> str:
+    """Get code for a node specified
+    Arguments:
+    node_id -- ID of node to get code
+
+    Returns:
+    Response with error or responce message for ajax"""
+    node = db.session.query(Node).filter(Node.id == node_id).first()
     if not node:
         return Response(status=404)
 
@@ -22,7 +27,12 @@ def get_code(node_id: str) -> str:
 @node_api_bp.route("/add_node/<int:node_id>", methods=["POST"])
 @login_required
 def add_node(node_id: int) -> str:
-    """Add node by ID to the current user, to use in the editor later"""
+    """Add node by ID to the current user, to use in the editor later
+    Arguments:
+    node_id -- ID of node to add to current_user
+
+    Returns:
+    Response with error or "success" message for ajax"""
     node = db.session.query(Node).filter(Node.id == node_id).first()
     if not node:
         return Response(status=404)
