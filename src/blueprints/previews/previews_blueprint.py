@@ -29,7 +29,7 @@ def set_img(proj_id: int) -> Response:
     if project.user_id != current_user.id:
         return Response("project is not yours", status=403)
 
-    if "img" in request.form:
+    if "img" not in request.form:
         return Response("id field is not present in form", status=400)
 
     try:
