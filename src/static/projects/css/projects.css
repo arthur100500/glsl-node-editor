@@ -70,6 +70,7 @@
   width: 250px;
   border-radius: 10px 0 0 10px;
   border-right: 1px solid #404040;
+  aspect-ratio: 16/9;
 }
 
 .new-project {

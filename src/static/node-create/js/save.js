@@ -5,6 +5,15 @@ savenotify = () => $.notify("Saved code", "success", {
     className: "save-note"
 });
 
+errornotify = (msg) => {
+  $.notify(msg, "error", {
+        clickToHide: true,
+        autoHide: true,
+        autoHideDelay: 1000,
+        className: "save-note"
+  });
+};
+
 saveBtn.onmousedown = function () {
     let text = editor.getValue().replace(/ *\/\/([^\n]*) */g, "");
 
@@ -27,16 +36,16 @@ saveBtn.onmousedown = function () {
         url: '/save_node',
         data: node_data,
         success: function (response) {
-            if (!(response === "success")) {
-                console.log(response);
-            }
-            else {
-                savenotify()
-            }
+            if (response !== "success")
+                errornotify(response);
+            else
+                savenotify();
         },
         error: function (error) {
             if (error.status === 200)
-                savenotify()
+                savenotify();
+            else
+                errornotify(error.responseText);
         }
     });
 }

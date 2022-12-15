@@ -1,92 +1,83 @@
-from flask import Blueprint, Response, send_file, request
+import os
 
-from flask_login import current_user
-
-from db import db
+from db.database import db
 from db.models.project_model import ProjectModel as Project
-
+from flask import Blueprint, Response, send_file, request
+from flask_login import current_user
 
 textures_bp = Blueprint(
     "textures", __name__, template_folder="templates", static_folder="static"
 )
 
 
-@textures_bp.route("/pimg/<proj_id>/<tex_id>/")
-def get_proj_text_file(proj_id: str, tex_id: str) -> Response:
-    """Get the texture image for project and texture unit"""
-    session = db.get_session()
-    project = session.query(Project).filter(Project.id == int(proj_id)).first()
+@textures_bp.route("/pimg/<int:proj_id>/<int:tex_id>/")
+def get_proj_texture_file(proj_id: int, tex_id: int) -> Response:
+    """Get the texture image for project and texture unit
+    Arguments:
+    proj_id -- ID of the project to search for texture
+    tex_id -- ID of the texture unit to be changed [0-7]
 
-    if not 0 <= int(tex_id) <= 7:
-        return Response("Texture should be from 0 to 7", status=500)
+    Returns:
+    Response with error or texture file (image/png)"""
+    project = db.session.query(Project).filter(Project.id == proj_id).first()
+    if not project:
+        return Response("Project does not exist", status=404)
+
+    if not 0 <= tex_id <= 7:
+        return Response("Texture should be from 0 to 7", status=400)
 
     filename = "noimage.png"
-    if int(tex_id) <= 4:
-        filename = ["0.png", "1.png", "2.png", "3.jpg", "4.png"][int(tex_id)]
+    if tex_id <= 4:
+        filename = ["0.png", "1.png", "2.png", "3.jpg", "4.png"][tex_id]
 
-    if int(tex_id) == 0 and project.texture0_img != "":
-        filename = project.texture0_img
-    if int(tex_id) == 1 and project.texture1_img != "":
-        filename = project.texture1_img
-    if int(tex_id) == 2 and project.texture2_img != "":
-        filename = project.texture2_img
-    if int(tex_id) == 3 and project.texture3_img != "":
-        filename = project.texture3_img
-    if int(tex_id) == 4 and project.texture4_img != "":
-        filename = project.texture4_img
-    if int(tex_id) == 5 and project.texture5_img != "":
-        filename = project.texture5_img
-    if int(tex_id) == 6 and project.texture6_img != "":
-        filename = project.texture6_img
-    if int(tex_id) == 7 and project.texture7_img != "":
-        filename = project.texture7_img
+    field = f"texture{tex_id}_img"
+
+    if getattr(project, field) != "":
+        filename = getattr(project, field)
+
+    if not os.path.exists(f"data/texture_imgs/{filename}"):
+        return Response("Preview is not found", status=404)
 
     return send_file(f"data/texture_imgs/{filename}", mimetype="image/png")
 
 
-@textures_bp.route("/uploader/<proj_id>/<tex_id>/", methods=["POST"])
-def upload_file(proj_id: str, tex_id: str) -> str:
-    """Set the texture for project and unit specified"""
-    if request.method == "POST":
-        proj_id, tex_id = str(proj_id), str(tex_id)
+@textures_bp.route("/uploader/<int:proj_id>/<int:tex_id>/", methods=["POST"])
+def upload_file(proj_id: int, tex_id: int) -> str:
+    """Set the texture for project and unit specified
+    Arguments:
+    proj_id -- ID of the project to save texture for
+    tex_id -- ID of the texture unit to be changed [0-7]
 
-        session = db.get_session()
+    Returns:
+    Response with error or "success" for ajax"""
+    if not 0 <= tex_id <= 7:
+        return Response("Texture should be from 0 to 7", status=400)
 
-        if not proj_id.isnumeric() or not tex_id.isnumeric():
-            return Response("Project ID or Texture ID is not numeric", status=500)
+    project = db.session.query(Project).filter(Project.id == int(proj_id)).first()
+    if not project:
+        return Response("Project does not exist", status=404)
 
-        if not 0 <= int(tex_id) <= 7:
-            return Response("Texture should be from 0 to 7", status=500)
+    if not "file" in request.files:
+        return Response("file field is not present in form", status=400)
 
-        project = session.query(Project).filter(Project.id == int(proj_id)).first()
+    file = request.files["file"]
+    if len(file.filename.split(".")) <= 2:
+        return Response("file does not have an extension", status=400)
 
-        file = request.files["file"]
-        ext = file.filename.split(".")[-1]
-        fname = f"p{proj_id}s{tex_id}.{ext}"
+    ext = file.filename.split(".")[-1]
+    filename = f"p{proj_id}s{tex_id}.{ext}"
 
-        if project.user_id != current_user.id:
-            return Response("Project is not yours", status=403)
+    if project.user_id != current_user.id:
+        return Response("Project is not yours", status=403)
 
-        if int(tex_id) == 0:
-            project.texture0_img = fname
-        if int(tex_id) == 1:
-            project.texture1_img = fname
-        if int(tex_id) == 2:
-            project.texture2_img = fname
-        if int(tex_id) == 3:
-            project.texture3_img = fname
-        if int(tex_id) == 4:
-            project.texture4_img = fname
-        if int(tex_id) == 5:
-            project.texture5_img = fname
-        if int(tex_id) == 6:
-            project.texture6_img = fname
-        if int(tex_id) == 7:
-            project.texture7_img = fname
+    field = f"texture{tex_id}_img"
 
-        session.add(project)
-        session.commit()
+    try:
+        file.save(f"data/texture_imgs/{filename}")
+    except Exception:
+        return Response("Error saving file", status=500)
 
-        file.save(f"data/texture_imgs/{fname}")
-        return Response("success", status=200)
-    return Response("post method is allowed here", status=405)
+    setattr(project, field, filename)
+    db.session.commit()
+
+    return Response("success", status=200)
