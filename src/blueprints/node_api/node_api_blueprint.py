@@ -66,8 +66,11 @@ def save_node() -> Response:
     if not node:
         return Response("The node does not exist", status=404)
 
+    if not current_user.is_authenticated:
+        return Response("You must be logged in to save the node", status=403)
+
     if node.owner_id != current_user.id:
-        return Response(status=403)
+        return Response("This node is not yours", status=403)
 
     node.name = request.form["name"]
     node.json_code = request.form["json_code"]
