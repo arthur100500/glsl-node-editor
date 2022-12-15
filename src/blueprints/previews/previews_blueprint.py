@@ -36,7 +36,7 @@ def set_img(proj_id: int) -> Response:
         with open(f"static/project_imgs/{proj_id}.png", "wb") as file:
             bts = request.form["img"].split(",")[1].encode("utf8")
             file.write(base64.decodebytes(bts))
-        
+
         project.img_src = f"{proj_id}.png"
         db.session.commit()
     except Exception:

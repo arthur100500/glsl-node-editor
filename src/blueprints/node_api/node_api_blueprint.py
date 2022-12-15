@@ -63,13 +63,17 @@ def rem_node(node_id: int) -> str:
 @node_api_bp.route("/save_node", methods=["POST"])
 def save_node() -> Response:
     """Save node"""
-    if 'id' not in request.form and request.form["id"] and request.form["id"] and request.form["id"].isnumeric():
+    if (
+        "id" not in request.form
+        and request.form["id"]
+        and request.form["id"].isnumeric()
+    ):
         return Response("id field is not present in form", status=400)
 
-    if 'name' not in request.form and request.form["name"]:
+    if "name" not in request.form and request.form["name"]:
         return Response("name field is not present in form", status=400)
 
-    if 'json_code' not in request.form and request.form["json_code"]:
+    if "json_code" not in request.form and request.form["json_code"]:
         return Response("json_code field is not present in form", status=400)
 
     node = db.session.query(Node).filter(Node.id == int(request.form["id"])).first()

@@ -11,7 +11,9 @@ projects_api_bp = Blueprint(
 @projects_api_bp.route("/save_project", methods=["POST"])
 def save_project() -> Response:
     """Save project"""
-    proj = db.session.query(Project).filter(Project.id == int(request.form["id"])).first()
+    proj = (
+        db.session.query(Project).filter(Project.id == int(request.form["id"])).first()
+    )
     if not proj:
         return Response("Project does not exist", status=404)
 

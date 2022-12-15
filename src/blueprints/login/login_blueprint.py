@@ -38,7 +38,9 @@ def login() -> str:
     register_form = RegisterForm()
 
     if login_form.validate_on_submit():
-        user = db.session.query(User).filter(User.email == login_form.email.data).first()
+        user = (
+            db.session.query(User).filter(User.email == login_form.email.data).first()
+        )
         if user is None:
             flash("This user does not exist", "Login")
         elif not user.check_password(login_form.password.data):
@@ -50,9 +52,15 @@ def login() -> str:
     if register_form.validate_on_submit():
         if register_form.password.data != register_form.password_again.data:
             flash("Passwords are not the same", "Register")
-        elif db.session.query(User).filter(User.email == register_form.email.data).first():
+        elif (
+            db.session.query(User)
+            .filter(User.email == register_form.email.data)
+            .first()
+        ):
             flash("This email is already registered", "Register")
-        elif db.session.query(User).filter(User.name == register_form.name.data).first():
+        elif (
+            db.session.query(User).filter(User.name == register_form.name.data).first()
+        ):
             flash("This nickname is already taken", "Register")
         else:
             user = User(name=register_form.name.data, email=register_form.email.data)

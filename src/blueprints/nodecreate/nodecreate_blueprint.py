@@ -15,7 +15,7 @@ def node_editor_page(node_id: int) -> Response:
 
     Returns:
     Response with error or html for editor"""
-    
+
     node = db.session.query(Node).filter(Node.id == node_id).first()
     if not node:
         return Response("Node not found", status=404)
