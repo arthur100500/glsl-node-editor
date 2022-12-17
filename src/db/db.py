@@ -4,8 +4,10 @@ from pathlib import Path
 
 from sqlalchemy import MetaData
 from flask_sqlalchemy import SQLAlchemy
+import sqlalchemy as sa
 
 from app_config import DATABASE_NAME, DATABASE_BACKUP_NAME
+from sqlalchemy_utils import database_exists, create_database
 
 convention = {
     "ix": "ix_%(column_0_label)s",
@@ -22,6 +24,15 @@ db = SQLAlchemy(metadata=metadata)
 def init(app):
     db.app = app
     db.init_app(app)
+
+    # Create if it does not exist
+    engine = db.get_engine()
+    if not database_exists(engine.url):
+        create_database(engine.url)
+
+    table_names = sa.inspect(engine).get_table_names()
+    if "users" not in table_names or "users" not in table_names or "users" not in table_names or "users" not in table_names:
+        create_db()
 
 
 def get_session():
