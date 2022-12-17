@@ -22,7 +22,7 @@ from blueprints.textures.textures_blueprint import textures_bp
 
 from blueprints.login.login_blueprint import login_manager
 
-from app_config import DATABASE_NAME
+from app_config import SQLALCHEMY_DATABASE_URI
 
 from assets import assets
 
@@ -34,9 +34,10 @@ def create_app():
     )
     app.config["UPLOAD_FOLDER"] = "upload"
     app.config["MAX_CONTENT_PATH"] = 1024 * 1024 * 8
+    app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + DATABASE_NAME
-    init(app)
+    with app.app_context():
+        init(app)
 
     app_env = Environment(app)
     login_manager.init_app(app)
