@@ -6,12 +6,20 @@
 ## Shader Editor
 Creates shaders using nodes
 
-### How to create a new shader?
+## How to run
+Make sure you have python installed<br />
+Clone the repo with <br />`git clone https://github.com/arthur100500/glsl-node-editor.git`<br />
+Install dependecies with <br />`pip install requirements.txt`<br />
+Run app with <br />`python3 src/app.py`<br />
+
+## How to use
+
+### How to create a new shader
 - Register an account, clicking on the button `Sign in`<br />
 - Click on Projects button, click  `+ Create new project`<br />
 - You can change a name and description of your project just with clicking and editing its data<br />
 
-### How to use Shader Editor?
+### How to use Shader Editor
 - To move around, use mouse, scroll to zoom in/out
 - To place a node, right click and choose one from the list that drops
 - To move a specific, drag its header
@@ -29,14 +37,14 @@ Creates shaders using nodes
 ## Node Editor
 Creates nodes using GLSL code
 
-### How to create a new node?
+### How to create a new node
 - Register an account, clicking on the button `Sign in`<br />
 - Click on Nodes button, click  `+ Create new node`<br />
 
-### How to edit nodes name?
+### How to edit nodes name
 - Name of the node is defined by its name. `_` symbols will be replaced by `space`
 
-### How to add custom uniforms?
+### How to add custom uniforms
 You can add custom uniforms to your node. Just write them above the function like this
 ```glsl
 // Uniforms you want to add
