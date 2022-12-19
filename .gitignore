@@ -9,6 +9,12 @@ src/static/.webassets-cache/*
 
 src/data/db/*
 src/data/texture_imgs/*
+!src/data/texture_imgs/0.png
+!src/data/texture_imgs/1.png
+!src/data/texture_imgs/2.png
+!src/data/texture_imgs/3.jpg
+!src/data/texture_imgs/4.png
+!src/data/texture_imgs/noimage.png
 
 src/node_modules/*
 

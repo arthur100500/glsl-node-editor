@@ -35,6 +35,9 @@ def get_proj_texture_file(proj_id: int, tex_id: int) -> Response:
     if getattr(project, field) != "":
         filename = getattr(project, field)
 
+    if not os.path.exists("data/texture_imgs"):
+        os.makedirs("data/texture_imgs")
+
     if not os.path.exists(f"data/texture_imgs/{filename}"):
         return Response("Preview is not found", status=404)
 
