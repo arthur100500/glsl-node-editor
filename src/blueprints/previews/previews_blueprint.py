@@ -1,4 +1,5 @@
 import base64
+import os
 
 from db.database import db
 from db.models.project_model import ProjectModel as Project
@@ -33,6 +34,9 @@ def set_img(proj_id: int) -> Response:
         return Response("id field is not present in form", status=400)
 
     try:
+        if not os.path.exists("static/project_imgs"):
+            os.makedirs("static/project_imgs")
+
         with open(f"static/project_imgs/{proj_id}.png", "wb") as file:
             bts = request.form["img"].split(",")[1].encode("utf8")
             file.write(base64.decodebytes(bts))

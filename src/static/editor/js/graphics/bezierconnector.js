@@ -40,17 +40,16 @@ class BezierConnector {
         let lc = Math.abs(this.x0 - this.x1) / 2;
 
         // Curve itself
-        // К сожалению тут костыль и надеюсь я его улучшу но пока и так сойдет
         let curveSvg = ""
         if (ny0 < ny1)
             curveSvg = '<path d="M ' + (nx0 + strokeWidth) + ' ' + (ny0 + strokeWidth) +
                 ' C ' + (strokeWidth + lc) + ' ' + strokeWidth +
-                ', ' + (Math.abs(nx0 - nx1) - lc) + ' ' + (Math.abs(ny0 - ny1)) +
+                ', ' + (Math.abs(nx0 - nx1) - lc - strokeWidth) + ' ' + (Math.abs(ny0 - ny1) - strokeWidth) +
                 ', ' + (nx1 + strokeWidth) + ' ' + (ny1 + strokeWidth) +
                 '" stroke="' + this.color + '"  stroke-width="' + strokeWidth + '" fill="transparent"/';
         else
             curveSvg = '<path d="M ' + (nx0 + strokeWidth) + ' ' + (ny0 + strokeWidth) +
-                ' C ' + (Math.abs(nx0 - nx1) - lc) + ' ' + (Math.abs(ny0 - ny1)) +
+                ' C ' + (Math.abs(nx0 - nx1) - lc - strokeWidth) + ' ' + (Math.abs(ny0 - ny1) - strokeWidth) +
                 ', ' + (strokeWidth + lc) + ' ' + strokeWidth +
                 ', ' + (nx1 + strokeWidth) + ' ' + (ny1 + strokeWidth) +
                 '" stroke="' + this.color + '"  stroke-width="' + strokeWidth + '" fill="transparent"/';
