@@ -10,6 +10,7 @@ Creates shaders using nodes
 Make sure you have python installed<br />
 Clone the repo with <br />`git clone https://github.com/arthur100500/glsl-node-editor.git`<br />
 Install dependecies with <br />`pip install requirements.txt`<br />
+If it is your first run, initialaze the database <br />`python3 src/app.py init`<br />
 Run app with <br />`python3 src/app.py`<br />
 
 ## How to use
