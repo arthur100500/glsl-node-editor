@@ -1,0 +1,6 @@
+.gl-canvas {
+    background-color: black;
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 5px;
+}

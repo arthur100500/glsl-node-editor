@@ -1,0 +1,6 @@
+.debugger {
+    width: calc(100% - 1px);
+    position: absolute;
+    height: calc(100vh - 100px);
+    border-right: 1px solid #aaa;
+}

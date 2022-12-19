@@ -1,0 +1,17 @@
+.toolbar {
+    background-color: #fff;
+    border-bottom: 1px solid #aaa;
+    height: 40px;
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+}
+
+.control-button {
+    background-color: #fff;
+    border: 0 solid;
+    border-right: 1px solid #aaa;
+}
+
+.control-button:hover {
+    background-color: #ddd;
+}
