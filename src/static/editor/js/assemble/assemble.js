@@ -2,8 +2,9 @@
 const assamble = (allNodes) => {
     let allNodesDefined = [];
     let shaderHeader = `
-precision mediump float;
-
+#ifdef GL_ES
+    precision mediump float;
+#endif
 `;
 
     function removeRedefenitions(statements) {
