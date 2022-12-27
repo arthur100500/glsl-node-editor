@@ -64,7 +64,7 @@ def upload_file(proj_id: int, tex_id: int) -> str:
         return Response("file field is not present in form", status=400)
 
     file = request.files["file"]
-    if len(file.filename.split(".")) <= 2:
+    if len(file.filename.split(".")) < 2:
         return Response("file does not have an extension", status=400)
 
     ext = file.filename.split(".")[-1]
