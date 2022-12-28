@@ -2,8 +2,9 @@
 const assamble = (allNodes) => {
     let allNodesDefined = [];
     let shaderHeader = `
-precision mediump float;
-
+#ifdef GL_ES
+    precision mediump float;
+#endif
 `;
 
     function removeRedefenitions(statements) {
@@ -81,4 +82,23 @@ compileButton.onmousedown = () => {
     code = assamble(Editor.allNodes);
     fragShader = code;
     draw(glCanvas);
+}
+
+
+const download = (filename, text) => {
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+saveShButton.onmousedown = () => {
+    code = assamble(Editor.allNodes);
+    download("project.glsl", code);
 }
